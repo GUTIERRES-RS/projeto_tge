@@ -1,0 +1,55 @@
+hypotheses:
+  H1:
+    nome: "Emergência da Dimensão Espectral"
+    descricao: "A dinâmica do Heat Kernel em grande escala produz um plateau com dimensão espectral d_spec próxima de 4."
+    predicao: "d_spec(t) apresenta plateau estável com R^2 > 0.99 na região intermediária."
+    teste: "Análise de regressão linear deslizante do log P(t) vs log t sob variação de resolução N e sementes."
+    criterio_sucesso: "Plateau estável com largura > 1.5 décadas de tempo t e R^2 > 0.99 independente de N."
+    criterio_falha: "Ausência de plateau, R^2 < 0.95 ou dependência severa da semente aleatória sem convergência."
+    resultado_esperado: "Descrito honestamente pelos autovalores sem ajuste forçado para 4."
+    status: "EM TESTE"
+
+  H2:
+    nome: "Emergência de Assinatura Causal Lorentziana"
+    descricao: "A estrutura de Espaço de Krein com operador de Dirac indefinido D_Krein produz autovalores de métrica efetiva com 1 autovalor temporal de sinal oposto."
+    predicao: "Os autovalores da métrica espectral G_eff apresentam autovalores com sinais opostos gerando assinatura indefinida."
+    teste: "Diagonalização real de G_eff = D_Krein^dag D_Krein + i [eta, D_base] sem nenhuma regra multiplicativa artificial (ex: sem 3*time)."
+    criterio_sucesso: "Contagem de autovalores de G_eff que resulta em assinatura estável (pos, neg, zero) através de múltiplas sementes e tamanhos de sistema."
+    criterio_falha: "Métrica estritamente positiva definida (0, N, 0) ou instabilidade caótica sob pequenas perturbações."
+    status: "EM TESTE"
+
+  H3:
+    nome: "Quebra de Degenerescência por Geometria Interna"
+    descricao: "A álgebra interna não-comutativa quebra a degenerescência dos autovalores do Laplaciano espectral."
+    predicao: "Espaçamento de autovalores não nulo no setor de baixa energia."
+    teste: "Cálculo da estatística de espaçamento de autovalores vizinhos (Level Spacing Distribution)."
+    criterio_sucesso: "Distribuição de espaçamento Wigner-Dyson (GOE/GUE) indicando caos quântico e quebra de degenerescência."
+    criterio_falha: "Distribuição de Poisson pura indicando ausência de acoplamento geométrico interno."
+    status: "EM TESTE"
+
+  H4:
+    nome: "Hierarquia de Massas Leptônicas via Seesaw Espectral"
+    descricao: "O mecanismo de Seesaw emergente produz massas de neutrinos na escala sub-eV a partir da escala Majorana."
+    predicao: "m_nu ~ m_D^2 / M_R < 1 eV."
+    teste: "Derivação sem utilização de massas de neutrinos de entrada na matriz geradora."
+    criterio_sucesso: "Massas leves na faixa de 0.001 eV a 0.1 eV sem ajuste contínuo de parâmetros."
+    criterio_falha: "Necessidade de ajuste fino (fine-tuning) > 1 parte em 10^6."
+    status: "EM TESTE"
+
+  H5:
+    nome: "Gravidade Efetiva a partir da Ação Espectral"
+    descricao: "A expansão de Seeley-DeWitt Tr(f(D/Lambda)) reproduz os termos de Einstein-Hilbert e curvatura sem normalizações artificiais."
+    predicao: "Coeficiente a_2 proporcional à curvatura escalar R."
+    teste: "Análise assintótica de t -> 0 do Heat Kernel sem divisão por potências arbitrárias de 10."
+    criterio_sucesso: "Convergência assintótica estrita para os coeficientes geométricos de heat kernel."
+    criterio_falha: "Divergência dos coeficientes ou necessidade de fatores de escala de calibragem manual."
+    status: "EM TESTE"
+
+  H6:
+    nome: "Previsões Fenomenológicas Fora da Amostra (Out-of-Sample)"
+    descricao: "O modelo treinado em um conjunto de dados prevê observáveis em um conjunto de testes independente."
+    predicao: "Parâmetros orbitais calibrados em planetas internos (Mercúrio a Marte) preveem os planetas externos (Júpiter a Netuno) sem re-treinamento."
+    teste: "Validação cruzada Training Set vs Test Set."
+    criterio_sucesso: "Erro médio do Test Set comparável ao Training Set sem overfitting."
+    criterio_falha: "Divergência expressiva do erro no Test Set."
+    status: "EM TESTE"

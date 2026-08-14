@@ -1,0 +1,145 @@
+{
+  "teste_1": {
+    "teste": "TESTE 1: Emergência Dimensional",
+    "d_spec_medio": 0.9867852204787217,
+    "d_spec_std": 0.02469310546351044,
+    "r2_medio": 0.9999925323054025,
+    "status": "FALHA DA HIPÓTESE 4D"
+  },
+  "teste_2": {
+    "teste": "TESTE 2: Assinatura Causal Real",
+    "assinaturas_encontradas": [
+      [
+        122,
+        6,
+        0
+      ],
+      [
+        120,
+        8,
+        0
+      ],
+      [
+        120,
+        8,
+        0
+      ],
+      [
+        120,
+        8,
+        0
+      ],
+      [
+        121,
+        7,
+        0
+      ]
+    ],
+    "hardcoded_1_3_presente": false,
+    "status": "ASSINATURA REPORTADA SEM CIRCULARIDADE"
+  },
+  "teste_3": {
+    "teste": "TESTE 3: Estabilidade em N",
+    "assinaturas_por_n": {
+      "N=64": [
+        59,
+        5,
+        0
+      ],
+      "N=128": [
+        122,
+        6,
+        0
+      ],
+      "N=256": [
+        245,
+        11,
+        0
+      ]
+    },
+    "status": "ANALISADO"
+  },
+  "teste_4": {
+    "teste": "TESTE 4: Estabilidade em Seeds",
+    "univariada": false,
+    "assinaturas": [
+      [
+        122,
+        6,
+        0
+      ],
+      [
+        120,
+        8,
+        0
+      ],
+      [
+        120,
+        8,
+        0
+      ],
+      [
+        120,
+        8,
+        0
+      ],
+      [
+        121,
+        7,
+        0
+      ]
+    ],
+    "status": "VARIABILIDADE ESTOCÁSTICA REPORTADA"
+  },
+  "teste_5": {
+    "teste": "TESTE 5: Robustez UV/IR",
+    "uv_cutoff_max": 510.89811709494666,
+    "ir_cutoff_min": 0.004234816695826486,
+    "razao_escala_uv_ir": 120642.32142038326,
+    "status": "FRONTEIRA SPECTRAL AVALIADA"
+  },
+  "teste_6": {
+    "teste": "TESTE 6: Ausência de Alvo Hardcoded",
+    "alvo_4_utilizado_na_geracao": false,
+    "alvo_1_3_utilizado_na_geracao": false,
+    "status": "ISENÇÃO DE PARÂMETRO ALVO VERIFICADA"
+  },
+  "teste_7": {
+    "teste": "TESTE 7: Out-of-Sample Validation",
+    "erro_train_set_pct (Mercurio-Marte)": 36.81821217916756,
+    "erro_test_set_pct (Jupiter-Netuno)": 63.423491456769256,
+    "status": "VALIDAÇÃO CRUZADA EXECUTADA"
+  },
+  "teste_8": {
+    "teste": "TESTE 8: Modelo Nulo 1 (Euclidiano)",
+    "resultado": {
+      "descricao": "Operador Hermitiano com eta = I",
+      "assinatura": [
+        128,
+        0,
+        0
+      ],
+      "tipo": "Euclidiana Positiva"
+    },
+    "status": "COMPARADO COM SUCESSO"
+  },
+  "teste_9": {
+    "teste": "TESTE 9: Modelo Nulo 2 (Aleatório)",
+    "resultado": {
+      "descricao": "Matriz Simétrica Aleatória sem Estrutura de Krein/Dirac",
+      "assinatura": [
+        64,
+        64,
+        0
+      ],
+      "tipo": "Indefinida Aleatória"
+    },
+    "status": "COMPARADO COM SUCESSO"
+  },
+  "teste_10": {
+    "teste": "TESTE 10: Análise de Sensibilidade",
+    "desvio_maximo_autovalores_sob_ruido_1pct": 0.10380115216298691,
+    "mudanca_contagem_positivos": 0,
+    "status": "ROBUSTO A RUÍDO POUCO EXPRESSIVO"
+  }
+}

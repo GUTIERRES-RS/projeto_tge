@@ -1,0 +1,19 @@
+{
+  "versao": "TGE-2",
+  "descricao": "Baseline historico negativo - Colapso da Hipotese 4D e Geometria Euclidiana (0,48,0)",
+  "classificacao": "BASELINE NEGATIVO / FALHA DA HIPOTESE",
+  "dimensao_espectral": {
+    "media": 3.72835380,
+    "desvio_padrao": 0.49844691,
+    "minimo": 2.65378129,
+    "maximo": 4.45484365,
+    "fracao_proxima_4d": "3/16 (18.75%)"
+  },
+  "assinatura_causal": {
+    "pos": 0,
+    "neg": 48,
+    "zero": 0,
+    "tipo": "Euclidiana (0, 48, 0)"
+  },
+  "conclusao_historica": "FALHA DA HIPOTESE 4D LORENTZIANA BRUTA. Utilizado como linha de base inviolavel para avaliar modificacoes estruturais."
+}
