@@ -1,0 +1,17 @@
+[
+  {
+    "request_id": "AUDIT-001",
+    "auditor": "external-chatgpt",
+    "assessment": "Aguardando avaliacao inicial do Auditor Externo.",
+    "classification": "PENDING_REVIEW",
+    "critical_issues": [
+      "No codigo legado core_dirac.py L185-188, n_effective_space = 3 * n_effective_time forçava (1,3,0). Removido no TGE-CORE-01 em tge/core/causal_structure.py."
+    ],
+    "warnings": [],
+    "required_changes": [],
+    "recommended_experiments": [
+      "Verificar se existe alguma combinacao especifica de eta, gamma_5 e J na algebra de Connes que selecione naturalmente d=4 e (1,3) sem ajuste."
+    ],
+    "decision": "OPEN"
+  }
+]

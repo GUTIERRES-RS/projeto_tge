@@ -1,0 +1,13 @@
+[
+  {
+    "version": "TGE-CORE-01",
+    "date": "2026-08-14",
+    "changes": [
+      "Criado o protocolo de ponte síncrona TGE_BRIDGE.md e tge_exchange/",
+      "Realizada auditoria exaustiva dos 9 modulos legados em AUDIT_REPORT.md",
+      "Preservado baseline historico negativo TGE-2 (0,48,0)",
+      "Criado tge/core/causal_structure.py com diagonalizacao real de G_eff sem forçar (1,3)",
+      "Criado tge/experiments/falsification_suite.py com bateria de 10 testes falsificaveis"
+    ]
+  }
+]

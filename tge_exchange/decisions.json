@@ -1,0 +1,18 @@
+[
+  {
+    "id": "DEC-001",
+    "date": "2026-08-14",
+    "decision": "Implementacao do Protocolo TGE Bridge e congelamento da fisica legada",
+    "motive": "Garantir auditoria independente sem destruição do historico do projeto",
+    "evidence": "AUDIT_REPORT.md e tge/reports/baseline_tge2.json",
+    "commit": "5495ed88e589d3776ed63f2d58f61f355e0aa756"
+  },
+  {
+    "id": "DEC-002",
+    "date": "2026-08-14",
+    "decision": "Remocao estrita de qualquer regra multiplicativa para forçar a assinatura (1,3,0)",
+    "motive": "Cumprimento do Principio de Falsificabilidade: a assinatura deve emergir estritamente dos autovalores",
+    "evidence": "tge/core/causal_structure.py",
+    "commit": "5495ed88e589d3776ed63f2d58f61f355e0aa756"
+  }
+]

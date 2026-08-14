@@ -1,0 +1,61 @@
+[
+  {
+    "id": "EXP-001-DSPEC",
+    "date": "2026-08-14",
+    "commit": "5495ed88e589d3776ed63f2d58f61f355e0aa756",
+    "seed": 2026,
+    "N": 128,
+    "parameters": {},
+    "method": "Heat Trace Linear Regression (log P(t) vs log t)",
+    "result": {
+      "d_spec_mean": 1.15,
+      "r2_mean": 0.9999
+    },
+    "classification": "DERIVED",
+    "status": "COMPLETED",
+    "reproducible": true,
+    "notes": "Calculo de d_spec em operador de Dirac bruto sem calibragem. Demonstra d_spec ~ 1.15 (Falha da Hipotese 4D bruta)."
+  },
+  {
+    "id": "EXP-002-CAUSAL-CORE-01",
+    "date": "2026-08-14",
+    "commit": "5495ed88e589d3776ed63f2d58f61f355e0aa756",
+    "seed": 2026,
+    "N": 64,
+    "parameters": {
+      "eta_split": 0.5,
+      "tolerance": 0.00001
+    },
+    "method": "Diagonalizacao genuina da metrica efetiva G_eff = D_Krein^dag D_Krein + i [eta, D_base]",
+    "result": {
+      "raw_signature": [59, 5, 0],
+      "pos": 59,
+      "neg": 5,
+      "zero": 0,
+      "geometry": "Lorentziana Indefinida"
+    },
+    "classification": "DERIVED",
+    "status": "COMPLETED",
+    "reproducible": true,
+    "notes": "Assinatura mista real sem regra 1:3 forçada. Demonstra que G_eff e indefinido, mas a contagem (59, 5, 0) difere de (1, 3)."
+  },
+  {
+    "id": "EXP-003-FALSIFICATION-SUITE",
+    "date": "2026-08-14",
+    "commit": "5495ed88e589d3776ed63f2d58f61f355e0aa756",
+    "seed": 2026,
+    "N": 128,
+    "parameters": {},
+    "method": "Execucao dos 10 testes falsificaveis automatizados (tge/experiments/falsification_suite.py)",
+    "result": {
+      "teste_1": "FALHA DA HIPOTESE 4D (d_spec ~ 1.15)",
+      "teste_2": "ASSINATURA REPORTADA SEM CIRCULARIDADE",
+      "teste_6": "ISENÇÃO DE PARÂMETRO ALVO VERIFICADA",
+      "teste_8": "MODELO NULO 1 COMPARADO COM SUCESSO"
+    },
+    "classification": "DERIVED",
+    "status": "COMPLETED",
+    "reproducible": true,
+    "notes": "Relatório completo exportado para tge/reports/falsification_suite_report.json"
+  }
+]
