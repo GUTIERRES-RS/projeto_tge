@@ -36,7 +36,10 @@
       ]
     ],
     "hardcoded_1_3_presente": false,
-    "status": "ASSINATURA REPORTADA SEM CIRCULARIDADE"
+    "eta_classification": "HYPOTHESIS / INSERTED STRUCTURE",
+    "g_eff_classification": "HYPOTHESIS / NOT_DEMONSTRATED",
+    "signature_classification": "DERIVED_CONDITIONAL",
+    "status": "ASSINATURA REPORTADA CONDICIONAL A ETA (SEM CIRCULARIDADE)"
   },
   "teste_3": {
     "teste": "TESTE 3: Estabilidade em N",
@@ -96,7 +99,7 @@
     "uv_cutoff_max": 510.89811709494666,
     "ir_cutoff_min": 0.004234816695826486,
     "razao_escala_uv_ir": 120642.32142038326,
-    "status": "FRONTEIRA SPECTRAL AVALIADA"
+    "status": "FRONTEIRA ESPECTRAL AVALIADA"
   },
   "teste_6": {
     "teste": "TESTE 6: Ausência de Alvo Hardcoded",
@@ -111,30 +114,92 @@
     "status": "VALIDAÇÃO CRUZADA EXECUTADA"
   },
   "teste_8": {
-    "teste": "TESTE 8: Modelo Nulo 1 (Euclidiano)",
+    "teste": "TESTE 8: Modelo Nulo 1 (Euclidiano eta=I)",
     "resultado": {
-      "descricao": "Operador Hermitiano com eta = I",
-      "assinatura": [
+      "teste": "TESTE ETA = I (Controle Negativo Euclidiano)",
+      "dimensao_n": 128,
+      "seed": 2026,
+      "eta_assinatura": [
         128,
         0,
         0
       ],
-      "tipo": "Euclidiana Positiva"
-    },
-    "status": "COMPARADO COM SUCESSO"
-  },
-  "teste_9": {
-    "teste": "TESTE 9: Modelo Nulo 2 (Aleatório)",
-    "resultado": {
-      "descricao": "Matriz Simétrica Aleatória sem Estrutura de Krein/Dirac",
-      "assinatura": [
-        64,
-        64,
+      "g_eff_assinatura": [
+        128,
+        0,
         0
       ],
-      "tipo": "Indefinida Aleatória"
+      "is_pure_euclidean": true,
+      "tipo_geometria": "Euclidiana Positiva Definida",
+      "conclusao": "CONTROLE NEGATIVO CONFIRMADO: Sem Krein (eta = I), G_eff colapsa exatamente em métrica euclidiana positiva D^dag D sem termos temporais."
     },
-    "status": "COMPARADO COM SUCESSO"
+    "status": "CONTROLE NEGATIVO CONFIRMADO (COLAPSO EUCLIDIANO)"
+  },
+  "teste_9": {
+    "teste": "TESTE 9: Bateria de 6 Modelos Nulos",
+    "modelos": {
+      "Modelo_A_TGE_Krein_Padrao": {
+        "descricao": "D GUE + eta diag(1..-1) split 0.5",
+        "assinatura": [
+          122,
+          6,
+          0
+        ],
+        "pos": 122,
+        "neg": 6
+      },
+      "Modelo_B_D_Aleatorio_Eta_Escolhido": {
+        "descricao": "D GUE + eta diag(1..-1) split 0.25",
+        "assinatura": [
+          122,
+          6,
+          0
+        ],
+        "pos": 122,
+        "neg": 6
+      },
+      "Modelo_C_D_Aleatorio_Eta_Aleatorio": {
+        "descricao": "D GUE + eta involutivo aleatório",
+        "assinatura": [
+          122,
+          6,
+          0
+        ],
+        "pos": 122,
+        "neg": 6
+      },
+      "Modelo_D_D_Sem_Eta_Euclidiano": {
+        "descricao": "D GUE puro com eta = I (sem Krein)",
+        "assinatura": [
+          128,
+          0,
+          0
+        ],
+        "pos": 128,
+        "neg": 0
+      },
+      "Modelo_E_Hermitiana_GUE_Pura": {
+        "descricao": "Matriz GUE pura sem Dirac",
+        "assinatura": [
+          64,
+          64,
+          0
+        ],
+        "pos": 64,
+        "neg": 64
+      },
+      "Modelo_F_Simetrica_GOE_Pura": {
+        "descricao": "Matriz GOE pura sem Dirac",
+        "assinatura": [
+          65,
+          63,
+          0
+        ],
+        "pos": 65,
+        "neg": 63
+      }
+    },
+    "status": "COMPARADO COM SUCESSO (HERANÇA DE ESTRUTURA DEMONSTRADA)"
   },
   "teste_10": {
     "teste": "TESTE 10: Análise de Sensibilidade",

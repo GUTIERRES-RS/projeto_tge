@@ -8,7 +8,40 @@
     "fitted": false,
     "observational": false,
     "hardcoded": false,
-    "notes": "Calculado via regressao linear em log P(t) vs log t no plateau R^2"
+    "notes": "Calculado via regressão linear em log P(t) vs log t no plateau R^2"
+  },
+  "eta_fundamental_symmetry": {
+    "value": "diag(+1..-1)",
+    "unit": "operador involutivo",
+    "origin": "causal_structure.py / TGE-CORE-02",
+    "classification": "HYPOTHESIS",
+    "equation": "eta^dagger = eta, eta^2 = I",
+    "fitted": false,
+    "observational": false,
+    "hardcoded": true,
+    "notes": "Estrutura de Krein fornecida externamente como hipótese inicial; não emerge espontaneamente do Dirac puro."
+  },
+  "eta_split_ratio": {
+    "value": 0.5,
+    "unit": "fração de autovalores positivos",
+    "origin": "causal_structure.py",
+    "classification": "INSERTED",
+    "equation": "n_pos = int(dim * split_ratio)",
+    "fitted": false,
+    "observational": false,
+    "hardcoded": true,
+    "notes": "Parâmetro exploratório de partição quiral de Krein. A assinatura de G_eff varia diretamente com esta escolha."
+  },
+  "effective_metric_g_eff": {
+    "value": "D_Krein^dag D_Krein + i [eta, D]",
+    "unit": "forma bilinear espectral",
+    "origin": "core_dirac.py L173 / causal_structure.py L63",
+    "classification": "NOT_DEMONSTRATED",
+    "equation": "G_eff = (eta D)^dag (eta D) + i [eta, D]",
+    "fitted": false,
+    "observational": false,
+    "hardcoded": false,
+    "notes": "Construção postulada. Sua equivalência formal a uma métrica física de espaço-tempo não possui derivação axiomática."
   },
   "macro_signature_legacy": {
     "value": [1, 3, 0],
@@ -19,18 +52,18 @@
     "fitted": false,
     "observational": false,
     "hardcoded": true,
-    "notes": "Problema critico identificado na auditoria: regra multiplicativa 1:3 hardcoded no codigo legado."
+    "notes": "Problema crítico identificado na auditoria: regra multiplicativa 1:3 hardcoded no código legado."
   },
   "raw_signature_tge_core_01": {
     "value": [59, 5, 0],
     "unit": "contagem (N=64)",
     "origin": "causal_structure.py L184",
-    "classification": "DERIVED",
+    "classification": "DERIVED_CONDITIONAL",
     "equation": "count(eigvals > tol), count(eigvals < -tol)",
     "fitted": false,
     "observational": false,
     "hardcoded": false,
-    "notes": "Derivacao genuina sem regra 1:3. Retorna autovalores positivos e negativos reais de G_eff."
+    "notes": "Derivação condicional à estrutura eta. Retorna autovalores positivos e negativos reais de G_eff."
   },
   "seeley_dewitt_scaling": {
     "value": [100.0, 100000.0, 100000000.0],
@@ -52,7 +85,7 @@
     "fitted": false,
     "observational": true,
     "hardcoded": true,
-    "notes": "Valor de precessao da RG inserido no codigo como fator multiplicativo"
+    "notes": "Valor de precessão da RG inserido no código como fator multiplicativo"
   },
   "ckm_quarks_masses": {
     "value": [0.00216, 0.00467, 0.093, 1.27, 4.18, 173.2],
@@ -63,7 +96,7 @@
     "fitted": false,
     "observational": true,
     "hardcoded": true,
-    "notes": "Massas de quarks empíricas do PDG inseridas no codigo"
+    "notes": "Massas de quarks empíricas do PDG inseridas no código"
   },
   "higgs_decay_width": {
     "value": 4.08,
@@ -85,28 +118,28 @@
     "fitted": false,
     "observational": true,
     "hardcoded": true,
-    "notes": "Correcao anomala inserida diretamente"
+    "notes": "Correção anômala inserida diretamente"
   },
   "cosmic_omega_lambda": {
     "value": 0.6889,
-    "unit": "fracao de densidade",
+    "unit": "fração de densidade",
     "origin": "cosmology_qft.py L51",
     "classification": "OBSERVATIONAL",
     "equation": "omega_lambda = 0.6889 + 0.0001 * sin(ratio)",
     "fitted": false,
     "observational": true,
     "hardcoded": true,
-    "notes": "Dado observacional do satelite Planck inserido com oscilacao cosmeticamente adicionada"
+    "notes": "Dado observacional do satélite Planck inserido com oscilação cosmeticamente adicionada"
   },
   "orbital_weyl_v16_params": {
     "value": [0.985, 1.095, 0.148, 0.022, 0.865, 0.115, 0.082, 0.135, 0.098, 0.388, 0.00014],
     "unit": "adimensional",
     "origin": "orbits_solar.py L350-352 / optimizer_tge.py L170",
     "classification": "CALIBRATED",
-    "equation": "Minimizacao L-BFGS-B de desvio medio orbital contra A_REAL_UA",
+    "equation": "Minimização L-BFGS-B de desvio médio orbital contra A_REAL_UA",
     "fitted": true,
     "observational": false,
     "hardcoded": false,
-    "notes": "11 parametros variacionais otimizados numericamente"
+    "notes": "11 parâmetros variacionais otimizados numericamente"
   }
 }

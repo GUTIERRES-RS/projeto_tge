@@ -4,10 +4,25 @@
     "date": "2026-08-14",
     "changes": [
       "Criado o protocolo de ponte síncrona TGE_BRIDGE.md e tge_exchange/",
-      "Realizada auditoria exaustiva dos 9 modulos legados em AUDIT_REPORT.md",
-      "Preservado baseline historico negativo TGE-2 (0,48,0)",
-      "Criado tge/core/causal_structure.py com diagonalizacao real de G_eff sem forçar (1,3)",
-      "Criado tge/experiments/falsification_suite.py com bateria de 10 testes falsificaveis"
+      "Realizada auditoria exaustiva dos 9 módulos legados em AUDIT_REPORT.md",
+      "Preservado baseline histórico negativo TGE-2 (0,48,0)",
+      "Criado tge/core/causal_structure.py com diagonalização real de G_eff sem forçar (1,3)",
+      "Criado tge/experiments/falsification_suite.py com bateria de 10 testes falsificáveis"
+    ]
+  },
+  {
+    "version": "TGE-CORE-02",
+    "date": "2026-08-14",
+    "changes": [
+      "Remoção de eta_split_ratio da API padrão de produção de causal_structure.py",
+      "Separação epistemológica rigorosa de 3 Níveis: Nível 1 (eta: HYPOTHESIS), Nível 2 (G_eff: NOT_DEMONSTRATED), Nível 3 (Signature: DERIVED_CONDITIONAL)",
+      "Implementação do experimento TGE-CORE-02-A (Varredura paramétrica de eta demonstrando dependência estrita)",
+      "Implementação do teste de controle negativo euclidiano eta=I (colapso comprovado em (N,0,0))",
+      "Implementação de testes com eta involutivo aleatório, inversão eta -> -eta e rotacionamento unitário",
+      "Bateria completa de 6 modelos nulos independentes (A a F)",
+      "Auditoria matemática rigorosa de G_eff (8 questões teóricas)",
+      "Classificação honesta da Hipótese H2 como NOT_DEMONSTRATED / FAILED no modelo atual",
+      "Criação do relatório analítico TGE_CORE_02_REPORT.md"
     ]
   }
 ]

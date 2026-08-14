@@ -18,7 +18,7 @@
     "classification": "BASELINE NEGATIVE RESULT",
     "status": "COMPLETED",
     "reproducible": true,
-    "notes": "Baseline historico negativo preservado permanentemente. Demonstra dimensao 3.728 e assinatura estritamente euclidiana (0,48,0) no modelo original."
+    "notes": "Baseline histórico negativo preservado permanentemente. Demonstra dimensão 3.728 e assinatura estritamente euclidiana (0,48,0) no modelo original."
   },
   {
     "id": "EXP-001-DSPEC",
@@ -35,7 +35,7 @@
     "classification": "DERIVED",
     "status": "COMPLETED",
     "reproducible": true,
-    "notes": "Calculo de d_spec em operador de Dirac bruto sem calibragem. Demonstra d_spec ~ 1.15 (Falha da Hipotese 4D bruta)."
+    "notes": "Cálculo de d_spec em operador de Dirac bruto sem calibragem. Demonstra d_spec ~ 1.15 (Falha da Hipótese 4D bruta)."
   },
   {
     "id": "EXP-002-CAUSAL-CORE-01",
@@ -47,18 +47,18 @@
       "eta_split": 0.5,
       "tolerance": 0.00001
     },
-    "method": "Diagonalizacao genuina da metrica efetiva G_eff = D_Krein^dag D_Krein + i [eta, D_base]",
+    "method": "Diagonalização genuína da métrica efetiva G_eff = D_Krein^dag D_Krein + i [eta, D_base]",
     "result": {
       "raw_signature": [59, 5, 0],
       "pos": 59,
       "neg": 5,
       "zero": 0,
-      "geometry": "Lorentziana Indefinida"
+      "geometry": "Indefinida Condicional a eta"
     },
-    "classification": "DERIVED",
+    "classification": "DERIVED_CONDITIONAL",
     "status": "COMPLETED",
     "reproducible": true,
-    "notes": "Assinatura mista real sem regra 1:3 forcada. Demonstra que G_eff e indefinido, mas a contagem (59, 5, 0) difere de (1, 3)."
+    "notes": "Assinatura mista real sem regra 1:3 forçada. Demonstra que G_eff é indefinido, mas a contagem (59, 5, 0) difere de (1, 3)."
   },
   {
     "id": "EXP-003-FALSIFICATION-SUITE",
@@ -67,16 +67,62 @@
     "seed": 2026,
     "N": 128,
     "parameters": {},
-    "method": "Execucao dos 10 testes falsificaveis automatizados (tge/experiments/falsification_suite.py)",
+    "method": "Execução dos 10 testes falsificáveis automatizados (tge/experiments/falsification_suite.py)",
     "result": {
-      "teste_1": "FALHA DA HIPOTESE 4D (d_spec ~ 1.15)",
-      "teste_2": "ASSINATURA REPORTADA SEM CIRCULARIDADE",
-      "teste_6": "ISENCAO DE PARAMETRO ALVO VERIFICADA",
-      "teste_8": "MODELO NULO 1 COMPARADO COM SUCESSO"
+      "teste_1": "FALHA DA HIPÓTESE 4D (d_spec ~ 1.15)",
+      "teste_2": "ASSINATURA REPORTADA CONDICIONAL A ETA",
+      "teste_6": "ISENÇÃO DE PARÂMETRO ALVO VERIFICADA",
+      "teste_8": "CONTROLE NEGATIVO CONFIRMADO (COLAPSO EUCLIDIANO)"
+    },
+    "classification": "DERIVED_CONDITIONAL",
+    "status": "COMPLETED",
+    "reproducible": true,
+    "notes": "Relatório completo exportado para tge/reports/falsification_suite_report.json"
+  },
+  {
+    "id": "EXP-CORE-02-A-SWEEP",
+    "date": "2026-08-14",
+    "commit": "TGE-CORE-02",
+    "seed": 2026,
+    "N": 64,
+    "parameters": {
+      "split_ratios": [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9]
+    },
+    "method": "Varredura Paramétrica Sistemática de eta_split_ratio e Diagonalização Real de G_eff",
+    "result": {
+      "dependencia_de_eta": true,
+      "signatures_by_ratio": {
+        "0.1": [61, 3, 0],
+        "0.3": [59, 5, 0],
+        "0.5": [59, 5, 0],
+        "0.7": [59, 5, 0],
+        "0.9": [61, 3, 0]
+      },
+      "conclusao": "A assinatura de G_eff varia diretamente com a estrutura eta inserida."
+    },
+    "classification": "DERIVED_CONDITIONAL",
+    "status": "COMPLETED",
+    "reproducible": true,
+    "notes": "Demonstra que a indefinição de G_eff não é intrínseca ao operador D puro, mas herdada de eta."
+  },
+  {
+    "id": "EXP-CORE-02-B-NULL-MODELS",
+    "date": "2026-08-14",
+    "commit": "TGE-CORE-02",
+    "seed": 2026,
+    "N": 128,
+    "parameters": {},
+    "method": "Comparação Sistemática contra 6 Modelos Nulos (A a F) e Teste de Controle Negativo eta = I",
+    "result": {
+      "eta_identity_signature": [128, 0, 0],
+      "tge_standard_signature": [122, 6, 0],
+      "gue_pure_signature": [64, 64, 0],
+      "goe_pure_signature": [65, 63, 0],
+      "conclusao_controle_negativo": "Sem Krein (eta=I), G_eff colapsa exatamente em métrica euclidiana positiva (128, 0, 0)."
     },
     "classification": "DERIVED",
     "status": "COMPLETED",
     "reproducible": true,
-    "notes": "Relatorio completo exportado para tge/reports/falsification_suite_report.json"
+    "notes": "Comprova a necessidade absoluta da estrutura eta para gerar termos não-positivos em G_eff."
   }
 ]

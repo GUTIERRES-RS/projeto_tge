@@ -16,6 +16,25 @@
       "validade matematica",
       "interpretacao dos autovalores de G_eff"
     ],
+    "status": "ANSWERED"
+  },
+  {
+    "request_id": "AUDIT-CORE-02",
+    "priority": "CRITICAL",
+    "question": "A assinatura causal é realmente emergente ou é herdada da estrutura eta fornecida?",
+    "files": [
+      "tge/core/causal_structure.py",
+      "tge/experiments/falsification_suite.py",
+      "TGE_CORE_02_REPORT.md"
+    ],
+    "commit": "TGE-CORE-02",
+    "experiment": "EXP-CORE-02-A-SWEEP / EXP-CORE-02-B-NULL-MODELS",
+    "expected_audit": [
+      "circularidade da estrutura de Krein eta",
+      "status epistemologico de G_eff como metrica",
+      "diferenciacao contra modelos nulos",
+      "conclusao sobre H2 (NOT_DEMONSTRATED)"
+    ],
     "status": "OPEN"
   }
 ]

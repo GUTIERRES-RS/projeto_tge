@@ -1,56 +1,56 @@
 {
   "H1": {
-    "statement": "A dinamica espectral produz dimensao efetiva d_spec proxima de 4 no plateau do Heat Kernel",
+    "statement": "A dinâmica espectral produz dimensão efetiva d_spec próxima de 4 no plateau do Heat Kernel",
     "status": "FAILED",
-    "prediction": "d_spec(t) apresenta plateau estavel com R^2 > 0.99 e d_spec ~ 4.0",
-    "test": "Regressao linear de log P(t) vs log t em janelas deslizantes sob variadas sementes e resolucoes N",
-    "success_criterion": "Plateau estavel com R^2 > 0.99 e d_spec entre 3.8 e 4.2",
-    "failure_criterion": "Plateau com d_spec desfiando significativamente de 4 (ex: d_spec ~ 1.1 a 1.2 no operador bruto ou 3.728 na TGE-2)",
-    "notes": "No operador de Dirac bruto sem calibragem, d_spec media e 1.10 - 1.20. Na TGE-2 o resultado foi 3.728 +/- 0.498 (Baseline Negativo)."
+    "prediction": "d_spec(t) apresenta plateau estável com R^2 > 0.99 e d_spec ~ 4.0",
+    "test": "Regressão linear de log P(t) vs log t em janelas deslizantes sob variadas sementes e resoluções N",
+    "success_criterion": "Plateau estável com R^2 > 0.99 e d_spec entre 3.8 e 4.2",
+    "failure_criterion": "Plateau com d_spec desviando significativamente de 4 (ex: d_spec ~ 1.15 no operador Dirac bruto)",
+    "notes": "No operador de Dirac bruto sem calibragem, d_spec média é 1.15. Na TGE-2 o resultado foi 3.728 +/- 0.498 (Baseline Negativo)."
   },
   "H2": {
-    "statement": "A estrutura geometrica de Krein produz assinatura Lorentziana emergente (pos > 0, neg > 0)",
-    "status": "TESTING",
-    "prediction": "Autovalores da metrica efetiva G_eff possuem sinais opostos indicando geometria indefinida",
-    "test": "Diagonalizacao real de G_eff = D_Krein^dag D_Krein + i [eta, D_base] sem regra multiplicativa 3*time",
-    "success_criterion": "Métrica indefinida estavel obtida diretamente dos autovalores",
-    "failure_criterion": "Métrica estritamente positiva (0, N, 0) ou colapso euclidiano (0, 48, 0)",
-    "notes": "TGE-CORE-01 obteve assinatura real mista (59, 5, 0) para N=64 e (122, 6, 0) para N=128. Regra 1:3 forçada foi removida."
+    "statement": "A estrutura causal Lorentziana 1+3 emerge sem inserção prévia.",
+    "status": "FAILED",
+    "prediction": "G_eff produz assinatura macroscópica (1,3) ou (3,1) estável sem inserção manual de eta",
+    "test": "Diagonalização real de G_eff em múltiplos N e seeds, varredura de eta e modelos nulos",
+    "success_criterion": "Assinatura (1,3) ou (3,1) estável sob seeds e N, sem parâmetro 1:3 inserido e distinta de modelos nulos",
+    "failure_criterion": "Assinatura diferente, dependência estrita de eta, ou comportamento indistinguível de matrizes indefinidas genéricas",
+    "notes": "TGE-CORE-02 demonstrou que a assinatura de G_eff herda diretamente a estrutura de Krein inserida (eta). Sem eta (eta=I), G_eff colapsa em métrica euclidiana (N,0,0). H2 classificada como NOT_DEMONSTRATED / FAILED no modelo atual."
   },
   "H3": {
-    "statement": "A estrutura interna nao-comutativa produz quebra de degenerescencia espectral",
+    "statement": "A estrutura interna não-comutativa produz quebra de degenerescência espectral",
     "status": "UNTESTED",
-    "prediction": "Espacamento nao-nulo de autovalores no setor de baixa energia",
-    "test": "Analise da distribuicao de espacamento entre autovalores vizinhos (Level Spacing Distribution)",
-    "success_criterion": "Estatistica Wigner-Dyson indicando caos quantico e acoplamento geometrico",
-    "failure_criterion": "Distribuicao de Poisson pura indicando ausencia de acoplamento",
+    "prediction": "Espaçamento não-nulo de autovalores no setor de baixa energia",
+    "test": "Análise da distribuição de espaçamento entre autovalores vizinhos (Level Spacing Distribution)",
+    "success_criterion": "Estatística Wigner-Dyson indicando caos quântico e acoplamento geométrico",
+    "failure_criterion": "Distribuição de Poisson pura indicando ausência de acoplamento",
     "notes": "Aguardando bateria de testes do setor interno."
   },
   "H4": {
-    "statement": "O setor leptonico produz hierarquia de massas de neutrinos via Seesaw Espectral",
+    "statement": "O setor leptônico produz hierarquia de massas de neutrinos via Seesaw Espectral",
     "status": "TESTING",
     "prediction": "m_nu ~ m_D^2 / M_R resulta na escala sub-eV",
-    "test": "Calculo da escala de massa sem utilizar dados empíricos de neutrinos na matriz geradora",
+    "test": "Cálculo da escala de massa sem utilizar dados empíricos de neutrinos na matriz geradora",
     "success_criterion": "Massa sub-eV obtida sem ajuste fino > 1:10^6",
-    "failure_criterion": "Divergência da escala ou necessidade de fine-tuning continuo",
-    "notes": "Fórmula m_nu = m_D^2 / M_R é teorica (DERIVADA), mas massas m_D e M_R utilizadas no codigo eram INSERIDAS."
+    "failure_criterion": "Divergência da escala ou necessidade de fine-tuning contínuo",
+    "notes": "Fórmula m_nu = m_D^2 / M_R é teórica (DERIVADA), mas massas m_D e M_R utilizadas no código eram INSERIDAS."
   },
   "H5": {
     "statement": "A mesma estrutura espectral produz termos de gravidade efetiva de Einstein-Hilbert",
     "status": "TESTING",
-    "prediction": "Coeficientes Seeley-DeWitt a_2 reproduzem a acao de Einstein-Hilbert",
-    "test": "Expansão assintotica t -> 0 do Heat Kernel sem fatores arbitrários 10^2, 10^5, 10^8",
-    "success_criterion": "Convergência assintotica estrita sem normalizacoes manuais",
+    "prediction": "Coeficientes Seeley-DeWitt a_2 reproduzem a ação de Einstein-Hilbert",
+    "test": "Expansão assintótica t -> 0 do Heat Kernel sem fatores arbitrários 10^2, 10^5, 10^8",
+    "success_criterion": "Convergência assintótica estrita sem normalizações manuais",
     "failure_criterion": "Necessidade de divisão por divisores ad-hoc para ajustar a escala",
-    "notes": "Auditado em AUDIT_REPORT.md: no codigo legado a_2, a_4, a_6 sao divididos por 1e2, 1e5, 1e8 (CALIBRADO)."
+    "notes": "Auditado em AUDIT_REPORT.md: no código legado a_2, a_4, a_6 são divididos por 1e2, 1e5, 1e8 (CALIBRADO)."
   },
   "H6": {
-    "statement": "A teoria produz previsoes fenomenologicas independentes fora da amostra (Out-of-sample)",
+    "statement": "A teoria produz previsões fenomenológicas independentes fora da amostra (Out-of-sample)",
     "status": "TESTING",
-    "prediction": "Parametros ajustados em um subsistema preveem observaveis de outro subsistema nao-treinado",
-    "test": "Cross-validation train/test split em orbitas planetarias e curvas de rotacao galacticas",
-    "success_criterion": "Erro no Test Set compativel com Training Set sem degradação severa",
+    "prediction": "Parâmetros ajustados em um subsistema preveem observáveis de outro subsistema não-treinado",
+    "test": "Cross-validation train/test split em órbitas planetárias e curvas de rotação galácticas",
+    "success_criterion": "Erro no Test Set compatível com Training Set sem degradação severa",
     "failure_criterion": "Divergência acentuada do erro no Test Set (overfitting)",
-    "notes": "Testado no falsification_suite.py com train set (Mercurio-Marte) vs test set (Jupiter-Netuno)."
+    "notes": "Testado no falsification_suite.py com train set (Mercúrio-Marte) vs test set (Júpiter-Netuno)."
   }
 }

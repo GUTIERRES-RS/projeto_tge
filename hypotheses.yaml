@@ -5,18 +5,26 @@ hypotheses:
     predicao: "d_spec(t) apresenta plateau estável com R^2 > 0.99 na região intermediária."
     teste: "Análise de regressão linear deslizante do log P(t) vs log t sob variação de resolução N e sementes."
     criterio_sucesso: "Plateau estável com largura > 1.5 décadas de tempo t e R^2 > 0.99 independente de N."
-    criterio_falha: "Ausência de plateau, R^2 < 0.95 ou dependência severa da semente aleatória sem convergência."
+    criterio_falha: "Ausência de plateau, R^2 < 0.95 ou d_spec divergindo de 4 (ex: d_spec ~ 1.15 no Dirac puro)."
     resultado_esperado: "Descrito honestamente pelos autovalores sem ajuste forçado para 4."
-    status: "EM TESTE"
+    status: "FAILED (No Dirac Puro sem Calibragem)"
 
   H2:
-    nome: "Emergência de Assinatura Causal Lorentziana"
-    descricao: "A estrutura de Espaço de Krein com operador de Dirac indefinido D_Krein produz autovalores de métrica efetiva com 1 autovalor temporal de sinal oposto."
-    predicao: "Os autovalores da métrica espectral G_eff apresentam autovalores com sinais opostos gerando assinatura indefinida."
-    teste: "Diagonalização real de G_eff = D_Krein^dag D_Krein + i [eta, D_base] sem nenhuma regra multiplicativa artificial (ex: sem 3*time)."
-    criterio_sucesso: "Contagem de autovalores de G_eff que resulta em assinatura estável (pos, neg, zero) através de múltiplas sementes e tamanhos de sistema."
-    criterio_falha: "Métrica estritamente positiva definida (0, N, 0) ou instabilidade caótica sob pequenas perturbações."
-    status: "EM TESTE"
+    nome: "Emergência de Estrutura Causal Lorentziana 1+3 sem Inserção Prévia"
+    descricao: "A dinâmica espectral do operador de Dirac produz espontaneamente uma métrica efetiva com assinatura Lorentziana (1,3) ou (3,1) sem inserção prévia de eta."
+    predicao: "G_eff exibe exatamente 1 direção temporal de sinal oposto e 3 espaciais, estável sob seeds e N."
+    teste: "Diagonalização real de G_eff em múltiplos N e seeds, varredura de eta e comparação contra modelos nulos."
+    criterio_sucesso:
+      - "Assinatura macroscópica (1,3) ou (3,1) emergente sem parâmetro 1:3 inserido"
+      - "Estabilidade sob variação de sementes e resoluções N"
+      - "Robustez contra perturbações unitárias"
+      - "Diferença estatística significativa contra modelos nulos"
+    criterio_falha:
+      - "Assinatura diferente de (1,3) ou (3,1)"
+      - "Dependência direta e estrita da estrutura de Krein eta inserida"
+      - "Colapso euclidiano quando eta = I"
+      - "Comportamento indistinguível de matrizes Hermitianas indefinidas genéricas"
+    status: "FAILED / NOT_DEMONSTRATED (Dependência Estrita de Krein Inserido)"
 
   H3:
     nome: "Quebra de Degenerescência por Geometria Interna"
@@ -25,7 +33,7 @@ hypotheses:
     teste: "Cálculo da estatística de espaçamento de autovalores vizinhos (Level Spacing Distribution)."
     criterio_sucesso: "Distribuição de espaçamento Wigner-Dyson (GOE/GUE) indicando caos quântico e quebra de degenerescência."
     criterio_falha: "Distribuição de Poisson pura indicando ausência de acoplamento geométrico interno."
-    status: "EM TESTE"
+    status: "UNTESTED"
 
   H4:
     nome: "Hierarquia de Massas Leptônicas via Seesaw Espectral"
@@ -34,7 +42,7 @@ hypotheses:
     teste: "Derivação sem utilização de massas de neutrinos de entrada na matriz geradora."
     criterio_sucesso: "Massas leves na faixa de 0.001 eV a 0.1 eV sem ajuste contínuo de parâmetros."
     criterio_falha: "Necessidade de ajuste fino (fine-tuning) > 1 parte em 10^6."
-    status: "EM TESTE"
+    status: "TESTING"
 
   H5:
     nome: "Gravidade Efetiva a partir da Ação Espectral"
@@ -43,7 +51,7 @@ hypotheses:
     teste: "Análise assintótica de t -> 0 do Heat Kernel sem divisão por potências arbitrárias de 10."
     criterio_sucesso: "Convergência assintótica estrita para os coeficientes geométricos de heat kernel."
     criterio_falha: "Divergência dos coeficientes ou necessidade de fatores de escala de calibragem manual."
-    status: "EM TESTE"
+    status: "TESTING"
 
   H6:
     nome: "Previsões Fenomenológicas Fora da Amostra (Out-of-Sample)"
@@ -52,4 +60,4 @@ hypotheses:
     teste: "Validação cruzada Training Set vs Test Set."
     criterio_sucesso: "Erro médio do Test Set comparável ao Training Set sem overfitting."
     criterio_falha: "Divergência expressiva do erro no Test Set."
-    status: "EM TESTE"
+    status: "TESTING"

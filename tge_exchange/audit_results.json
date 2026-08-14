@@ -2,16 +2,34 @@
   {
     "request_id": "AUDIT-001",
     "auditor": "external-chatgpt",
-    "assessment": "Aguardando avaliacao inicial do Auditor Externo.",
-    "classification": "PENDING_REVIEW",
+    "assessment": "Auditoria de TGE-CORE-01 identificou que, embora o hardcode 1:3 tenha sido removido, a estrutura eta ainda é fornecida externamente (eta_split_ratio=0.5), gerando circularidade conceitual sobre a emergência de Lorentzianidade.",
+    "classification": "CIRCULARIDADE_CONCEITUAL_IDENTIFICADA",
     "critical_issues": [
-      "No codigo legado core_dirac.py L185-188, n_effective_space = 3 * n_effective_time forçava (1,3,0). Removido no TGE-CORE-01 em tge/core/causal_structure.py."
+      "A indefinição espectral decorre diretamente da estrutura de Krein inserida (eta), e não de uma propriedade auto-emergente do Dirac puro."
     ],
+    "warnings": [
+      "Não chamar 'pos>0 e neg>0' de 'Lorentziana Emergente' sem demonstrar a escala macroscópica 1+3."
+    ],
+    "required_changes": [
+      "Remover eta_split_ratio da API padrão de produção.",
+      "Classificar eta como HYPOTHESIS / INSERTED e G_eff como NOT_DEMONSTRATED.",
+      "Executar controles eta=I, eta aleatório e modelos nulos."
+    ],
+    "recommended_experiments": [
+      "Varredura paramétrica de eta_split_ratio (TGE-CORE-02-A)",
+      "Teste de controle euclidiano negativo eta=I"
+    ],
+    "decision": "IMPLEMENTED_IN_TGE_CORE_02"
+  },
+  {
+    "request_id": "AUDIT-CORE-02",
+    "auditor": "external-chatgpt",
+    "assessment": "Aguardando avaliação da suíte TGE-CORE-02 e do relatório TGE_CORE_02_REPORT.md.",
+    "classification": "PENDING_REVIEW",
+    "critical_issues": [],
     "warnings": [],
     "required_changes": [],
-    "recommended_experiments": [
-      "Verificar se existe alguma combinacao especifica de eta, gamma_5 e J na algebra de Connes que selecione naturalmente d=4 e (1,3) sem ajuste."
-    ],
+    "recommended_experiments": [],
     "decision": "OPEN"
   }
 ]

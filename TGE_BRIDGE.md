@@ -2,12 +2,12 @@
 
 ## STATUS
 
-status_do_projeto: INITIAL_AUDIT_COMPLETED
-fase_atual: TGE-CORE-01 (Auditoria, Protocolo Bridge e Diagnóstico de Assinatura)
-ultimo_commit: 65f447422e9391c795649ca47fa54a3cf3497c86
-ultimo_experimento: EXP-002-CAUSAL-CORE-01
-ultimo_resultado: Assinatura mista Lorentziana emergente real (59, 5, 0) para N=64 e (122, 6, 0) para N=128
-bloqueio_atual: Aguardando parecer do Auditor Externo para o TGE-CORE-01
+status_do_projeto: TGE_CORE_02_COMPLETED
+fase_atual: TGE-CORE-02 (Correção de Circularidade da Estrutura de Krein & Auditoria de G_eff)
+ultimo_commit: TGE-CORE-02
+ultimo_experimento: EXP-CORE-02-B-NULL-MODELS
+ultimo_resultado: Dependência direta de eta comprovada; Controle eta=I colapsa em (128,0,0); H2 classificada honestamente como FAILED / NOT_DEMONSTRATED
+bloqueio_atual: Aguardando parecer do Auditor Externo para AUDIT-CORE-02
 requires_external_audit: true
 
 ---
@@ -16,19 +16,29 @@ requires_external_audit: true
 
 data: 2026-08-14
 
-assunto: Implantação do Protocolo TGE Bridge, Auditoria de core_dirac.py e Registro do Baseline TGE-2
+assunto: Conclusão do Protocolo TGE-CORE-02 — Remoção de Circularidade de Krein e Auditoria de G_eff
 
 mensagem: |
-  1. O protocolo de governança TGE-BRIDGE e a estrutura `tge_exchange/` foram completamente inicializados com todos os arquivos JSON de controle.
-  2. O baseline histórico negativo da TGE-2 (d_spec = 3.728 ± 0.498, assinatura euclidiana (0,48,0)) foi registrado permanentemente.
-  3. Foi auditado o arquivo legado `core_dirac.py`, identificando com precisão a inserção forçada da assinatura `(1,3,0)` via `n_effective_space = 3 * n_effective_time` (linhas 185-188).
-  4. Realizei a auditoria detalhada respondendo pontualmente às 10 questões epistemológicas e matemáticas sobre `core_dirac.py`.
-  5. A derivação genuína de autovalores de $G_{\text{eff}} = D_{\text{Krein}}^\dagger D_{\text{Krein}} + i[\eta, D]$ resulta em assinatura indefinida $(59, 5, 0)$ para $N=64$ e $(122, 6, 0)$ para $N=128$. Nenhum parâmetro ou regra foi ajustado para mascarar ou forçar $(1,3,0)$.
+  1. A circularidade conceitual da estrutura de Krein foi completamente isolada e corrigida.
+  2. O parâmetro `eta_split_ratio` foi removido da API padrão de produção em `tge/core/causal_structure.py`.
+  3. Adotou-se a separação estrita em 3 Níveis:
+     - Nível 1: Estrutura inserida (eta) -> Classificação: HYPOTHESIS / INSERTED STRUCTURE
+     - Nível 2: Construção matemática (G_eff) -> Classificação: HYPOTHESIS / NOT_DEMONSTRATED
+     - Nível 3: Resultado calculado (Assinatura) -> Classificação: DERIVED_CONDITIONAL
+  4. Executou-se o teste de controle negativo euclidiano (eta = I): G_eff colapsa exatamente em métrica euclidiana positiva (128, 0, 0), demonstrando que o operador de Dirac puro é incapaz de gerar tempo ou sinais negativos sem a inserção externa de Krein.
+  5. No experimento TGE-CORE-02-A (Varredura de eta), comprovou-se que a contagem de autovalores de G_eff varia conforme a partição de eta inserida.
+  6. A bateria de 6 modelos nulos independentes (A a F) confirmou que G_eff se comporta como uma matriz hermitiana indefinida genérica condicionada a eta.
+  7. A Hipótese H2 foi formalmente classificada como FAILED / NOT_DEMONSTRATED no modelo atual.
+  8. Relatório analítico completo exportado para `TGE_CORE_02_REPORT.md`.
 
 arquivos_modificados:
+  - README.md
+  - hypotheses.yaml
   - TGE_BRIDGE.md
-  - .gitignore
-  - tge_exchange/README.md
+  - TGE_CORE_02_REPORT.md
+  - tge/core/causal_structure.py
+  - tge/experiments/falsification_suite.py
+  - tge/reports/falsification_suite_report.json
   - tge_exchange/current_status.json
   - tge_exchange/hypotheses.json
   - tge_exchange/parameters.json
@@ -39,19 +49,23 @@ arquivos_modificados:
   - tge_exchange/changelog.json
 
 experimentos_executados:
-  - EXP-BASELINE-TGE2 (Preservação permanente do resultado negativo baseline TGE-2: d_spec=3.728, ass=(0,48,0))
-  - EXP-001-DSPEC (Heat Trace Linear Regression sem calibragem: d_spec ~ 1.15)
+  - EXP-BASELINE-TGE2 (Preservação do resultado negativo histórico: d_spec=3.728, ass=(0,48,0))
+  - EXP-001-DSPEC (Heat Trace Linear Regression sem calibragem: d_spec ~ 1.15 [FALHA 4D])
   - EXP-002-CAUSAL-CORE-01 (Diagonalização genuína de G_eff: (59, 5, 0) para N=64)
-  - EXP-003-FALSIFICATION-SUITE (Bateria de 10 testes falsificáveis)
+  - EXP-CORE-02-A-SWEEP (Varredura paramétrica de eta_split_ratio: dependência direta comprovada)
+  - EXP-CORE-02-B-NULL-MODELS (Bateria de 6 modelos nulos e controle eta=I [colapso em (128,0,0)])
+  - EXP-003-FALSIFICATION-SUITE (Execução dos 10 testes falsificáveis atualizados)
 
 resultados:
-  - Baseline TGE-2 preservado: d_spec = 3.72835380 ± 0.49844691, min=2.65378129, max=4.45484365, 3/16 dentro de |d-4|<0.1, assinatura (0,48,0) [BASELINE NEGATIVE RESULT].
-  - Operador Dirac bruto sem normalização: d_spec ~ 1.15 - 1.20 (FALHA DA HIPÓTESE 4D BRUTA).
-  - $G_{\text{eff}}$ em Espaço de Krein gera genuinamente autovalores com sinais opostos (geometria indefinida), porém a contagem de autovalores é (59, 5, 0) para N=64 e (122, 6, 0) para N=128.
-  - Regra forçada `(1,3,0)` foi diagnosticada e isolada como INSERTED / HARDCODED no código legado.
+  - Controle Negativo (eta = I): G_eff = (128, 0, 0) [Colapso Euclidiano Positivo Puro].
+  - Varredura de eta (N=64): split 0.1 -> (61, 3, 0); split 0.3-0.7 -> (59, 5, 0); split 0.9 -> (61, 3, 0).
+  - Inversão eta -> -eta: (122, 6, 0) vs (122, 6, 0) com inversão de sinal no comutador i[eta, D].
+  - Modelos Nulos: GUE Pura = (64, 64, 0); GOE Pura = (65, 63, 0); TGE Sem Krein = (128, 0, 0).
+  - Hipótese H1: FAILED (d_spec ~ 1.15 no Dirac puro).
+  - Hipótese H2: FAILED / NOT_DEMONSTRATED (sem emergência causal auto-consistente 1+3).
 
 duvidas_para_auditor:
-  - A estrutura de Espaço de Krein $G_{\text{eff}} = D_{\text{Krein}}^\dagger D_{\text{Krein}} + i[\eta, D]$ é matematicamente suficiente para caracterizar uma geometria pseudoriemanniana/Lorentziana emergente pelo simples fato de possuir autovalores de sinais mistos, ou a proporção exata $(1,3)$ exige necessariamente a restrição quiral e a representação da álgebra interna de Connes $M_3(\mathbb{C}) \oplus \mathbb{H} \oplus \mathbb{C}$ com o operador real $J$?
+  - Diante do colapso euclidiano de G_eff sob eta = I e da dependência estrita em relação à partição de Krein fornecida, qual construção puramente espectral (por exemplo, via álgebras graduadas de Connes, torção quiral ou operadores de Clifford internos) poderia teoricamente selecionar a assinatura 1+3 sem a postulação externa ad-hoc de eta?
 
 ---
 
@@ -73,44 +87,24 @@ ações_recomendadas:
 
 ---
 
-## AUDITORIA DETALHADA DE CORE_DIRAC.PY (TAREFA 2)
+## AUDITORIA TEÓRICA DE G_EFF (TGE-CORE-02)
 
-1. **Onde a assinatura é determinada?**
-   - No arquivo `core_dirac.py`, na função `analyze_krein_causal_emergence()` (linhas 180-188). As linhas 180-182 contam os autovalores de $G_{\text{sym}}$, e as linhas 186-188 convertem arbitrariamente essa contagem em `(n_effective_time, 3 * n_effective_time, 0)`.
-
-2. **Existe assinatura hardcoded?**
-   - **SIM.** A linha 187 (`n_effective_space = 3 * n_effective_time`) forçava a proporção 1:3 independentemente dos autovalores reais calculados pelo espectro.
-
-3. **Onde a métrica efetiva é construída?**
-   - Nas linhas 168-175:
-     ```python
-     D_krein = eta @ self.D_base
-     comm = 1j * (eta @ self.D_base - self.D_base @ eta)
-     G_eff = (D_krein.conj().T @ D_krein) + comm
-     G_sym = (G_eff + G_eff.conj().T) / 2.0
-     ```
-
-4. **A assinatura pode ser diferente de (1,3)?**
-   - No código original `core_dirac.py`: **NÃO**, porque a linha 187 impunha a proporção multiplicativa $3 \times \text{time}$.
-   - Na extração genuína dos sinais dos autovalores de $G_{\text{sym}}$: **SIM**, a contagem de autovalores resulta em `(59, 5, 0)` para $N=64$ e `(122, 6, 0)` para $N=128$.
-
-5. **D†D pode produzir assinatura Lorentziana?**
-   - **NÃO.** Por definição da álgebra linear, $D^\dagger D$ (ou $D^2$ para $D$ hermitiano) é uma matriz hermitiana positiva semidefinida ($v^\dagger D^\dagger D v = \|Dv\|^2 \ge 0$). Seus autovalores são todos reais e não-negativos ($\ge 0$), podendo produzir exclusivamente assinaturas euclidianas $(0, N, 0)$ ou $(N, 0, 0)$.
-
-6. **gamma_5 participa efetivamente?**
-   - **NÃO.** Em `core_dirac.py`, $\gamma_5$ é instanciado na linha 37 como $\text{diag}([1 \dots 1, -1 \dots -1])$, mas não é passado nem utilizado na construção da métrica de Krein $G_{\text{eff}}$. Em seu lugar, foi criada uma matriz $\eta$ com divisão de dimensão $1/4$ vs $3/4$.
-
-7. **J (estrutura real / conjugação de carga) participa?**
-   - **NÃO.** O operador real $J$ da tripla espectral de Connes não está instanciado nem entra no cálculo da métrica de Krein em `core_dirac.py`.
-
-8. **A álgebra interna participa?**
-   - **NÃO.** O operador $D$ em `core_dirac.py` é gerado apenas como uma matriz aleatória hermitiana pura (GUE/GOE), sem os blocos constitutivos da álgebra quase-comutativa do Modelo Padrão ($M_3(\mathbb{C}) \oplus \mathbb{H} \oplus \mathbb{C}$ ou matrizes de Yukawa/Majorana).
-
-9. **Existe estrutura que permita métrica indefinida?**
-   - **SIM.** O produto fundamental de Krein com a simetria $\eta$ ($\eta^2 = I, \eta^\dagger = \eta$) e o termo comutador anti-hermitiano tornado hermitiano $i[\eta, D]$ tornam $G_{\text{sym}}$ não-positivo definido, gerando autovalores negativos reais na diagonalização.
-
-10. **O resultado é realmente DERIVADO?**
-    - **NÃO na versão legada.** A assinatura macroscópica $(1,3,0)$ era **INSERIDA / NÃO DEMONSTRADA** devido à regra `3 * n_effective_time`. Apenas a presença de autovalores mistos (positivos e negativos) em $G_{\text{sym}}$ é **DERIVADA** matematicamente da álgebra de Krein.
+1. **Qual objeto matemático é G_eff?**
+   - É um operador linear auto-adjunto que atua sobre o espaço de Hilbert espinorial $\mathcal{H}$, definindo uma forma sesquilinear em $\mathbb{C}^N$. Não é um tensor métrico clássico no fibrado tangente.
+2. **Qual espaço vetorial ele representa?**
+   - O espaço de representação dos férmions discretos ($\mathbb{C}^N$).
+3. **Por que G_eff pode ser interpretado como forma bilinear?**
+   - Porque sendo auto-adjunto ($G_{\text{eff}} = G_{\text{eff}}^\dagger$), induz a forma hermitiana $\langle \psi, G_{\text{eff}} \phi \rangle$.
+4. **Por que ele deve ser Hermitiano?**
+   - Para garantir que seus autovalores sejam estritamente reais, possibilitando a contagem de sinais $(p, q, z)$.
+5. **Qual relação possui com uma métrica pseudo-Riemanniana?**
+   - É estritamente análoga. Falta a estrutura diferencial e de variedade suave $g_{\mu\nu} dx^\mu dx^\nu$.
+6. **Qual relação possui com a estrutura de Krein?**
+   - Dependência total: a indefinição de sinais é transmitida por $\eta$ via $D_{\text{Krein}} = \eta D$ e $i[\eta, D]$.
+7. **Qual relação possui com o operador de Dirac?**
+   - Utiliza $D$ no termo cinético $D^\dagger D$ e no termo de comutação $i[\eta, D]$.
+8. **Existe uma derivação axiomática ou G_eff é uma hipótese adicional?**
+   - **É UMA HIPÓTESE ADICIONAL / NÃO DEMONSTRADA.** Não existe derivação axiomática formal em geometria não-comutativa para $G_{\text{eff}}$ como métrica espaço-temporal.
 
 ---
 
@@ -125,3 +119,8 @@ ações_recomendadas:
   motivo: Princípio fundamental de falsificabilidade: a assinatura deve emergir diretamente do sinal dos autovalores
   evidência: `tge/core/causal_structure.py` e auditoria de `core_dirac.py`
   commit: 5495ed88e589d3776ed63f2d58f61f355e0aa756
+
+- decisão: DEC-003 - Remoção de circularidade causal e classificação de eta como HIPÓTESE INSERIDA (TGE-CORE-02)
+  motivo: Reconhecimento de que a indefinição de G_eff decorre de eta e não emerge do Dirac puro; controle eta=I colapsa em (128,0,0)
+  evidência: `TGE_CORE_02_REPORT.md`, varredura paramétrica de eta e bateria de 6 modelos nulos
+  commit: TGE-CORE-02
