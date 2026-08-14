@@ -1,21 +1,39 @@
 {
   "H1": {
-    "statement": "A dinâmica espectral produz dimensão efetiva d_spec próxima de 4 no plateau do Heat Kernel",
+    "statement": "A dinâmica espectral no Dirac puro (GUE) produz dimensão efetiva d_spec próxima de 4 no plateau do Heat Kernel",
     "status": "FAILED",
     "prediction": "d_spec(t) apresenta plateau estável com R^2 > 0.99 e d_spec ~ 4.0",
     "test": "Regressão linear de log P(t) vs log t em janelas deslizantes sob variadas sementes e resoluções N",
     "success_criterion": "Plateau estável com R^2 > 0.99 e d_spec entre 3.8 e 4.2",
-    "failure_criterion": "Plateau com d_spec desviando significativamente de 4 (ex: d_spec ~ 1.15 no operador Dirac bruto)",
-    "notes": "No operador de Dirac bruto sem calibragem, d_spec média é 1.15. Na TGE-2 o resultado foi 3.728 +/- 0.498 (Baseline Negativo)."
+    "failure_criterion": "Plateau com d_spec convergindo para a universalidade de Wigner ~ 1.0 a 1.15",
+    "notes": "Falsificada no TGE-CORE-03: d_spec = 1.0141 (R^2 = 0.999996). Resultado preservado permanentemente."
+  },
+  "H1_1_NEXT": {
+    "statement": "Um operador de Dirac estruturado por produto tensorial de geometrias não-comutativas (D_total = D_1 (x) I + gamma_1 (x) D_2) produz dimensão aditiva d_total = d_1 + d_2 = 4",
+    "status": "UNTESTED",
+    "prediction": "P_total(t) = P_1(t) * P_2(t) gerando d_spec = 4.0 no plateau de difusão",
+    "test": "Construção de produto tensorial de triplas espectrais e regressão de Heat Trace",
+    "success_criterion": "Plateau estável com d_spec entre 3.8 e 4.2 sem perda ou calibração dirigida",
+    "failure_criterion": "d_spec desviando significativamente de 4.0",
+    "notes": "Hipótese sucessora formulada com motivação algébrica independente."
   },
   "H2": {
-    "statement": "A estrutura causal Lorentziana 1+3 emerge sem inserção prévia.",
+    "statement": "A estrutura causal Lorentziana 1+3 emerge via simetria fundamental de Krein sem inserção prévia",
     "status": "FAILED",
     "prediction": "G_eff produz assinatura macroscópica (1,3) ou (3,1) estável sem inserção manual de eta",
     "test": "Diagonalização real de G_eff em múltiplos N e seeds, varredura de eta e modelos nulos",
-    "success_criterion": "Assinatura (1,3) ou (3,1) estável sob seeds e N, sem parâmetro 1:3 inserido e distinta de modelos nulos",
-    "failure_criterion": "Assinatura diferente, dependência estrita de eta, ou comportamento indistinguível de matrizes indefinidas genéricas",
-    "notes": "TGE-CORE-02 demonstrou que a assinatura de G_eff herda diretamente a estrutura de Krein inserida (eta). Sem eta (eta=I), G_eff colapsa em métrica euclidiana (N,0,0). H2 classificada como NOT_DEMONSTRATED / FAILED no modelo atual."
+    "success_criterion": "Assinatura (1,3) estável e P((1,3)|TGE) > 0.95",
+    "failure_criterion": "P((1,3)|TGE) = 0.0, dependência estrita de eta ou colapso euclidiano quando eta=I",
+    "notes": "Falsificada no TGE-CORE-03: P((1,3)|TGE) = 0.000 e teste eta=I colapsa em (128,0,0). Resultado preservado permanentemente."
+  },
+  "H2_1_NEXT": {
+    "statement": "A álgebra de Clifford Cl(1,3) e as relações de KO-dimensão de Barrett-Connes selecionam algebricamente a assinatura Lorentziana 1+3",
+    "status": "UNTESTED",
+    "prediction": "A forma bilinear graduada por J e gamma_5 induz exatamente 1 gerador temporal e 3 espaciais na representação irredutível de espinores",
+    "test": "Construção da tripla espectral real com geradores de Clifford gamma^mu e diagonalização sob relações de KO-dimensão",
+    "success_criterion": "Assinatura metricial (1,3) ou (3,1) invariante sob calibre unitário e sem necessidade de eta ad-hoc",
+    "failure_criterion": "Falha na representação das relações de KO-dimensão ou colapso euclidiano",
+    "notes": "Hipótese sucessora fundamentada na geometria não-comutativa de Connes-Barrett."
   },
   "H3": {
     "statement": "A estrutura interna não-comutativa produz quebra de degenerescência espectral",
@@ -33,7 +51,7 @@
     "test": "Cálculo da escala de massa sem utilizar dados empíricos de neutrinos na matriz geradora",
     "success_criterion": "Massa sub-eV obtida sem ajuste fino > 1:10^6",
     "failure_criterion": "Divergência da escala ou necessidade de fine-tuning contínuo",
-    "notes": "Fórmula m_nu = m_D^2 / M_R é teórica (DERIVADA), mas massas m_D e M_R utilizadas no código eram INSERIDAS."
+    "notes": "Fórmula m_nu = m_D^2 / M_R é teórica (DERIVADA), mas massas m_D e M_R utilizadas no código legado eram INSERIDAS."
   },
   "H5": {
     "statement": "A mesma estrutura espectral produz termos de gravidade efetiva de Einstein-Hilbert",
@@ -51,6 +69,6 @@
     "test": "Cross-validation train/test split em órbitas planetárias e curvas de rotação galácticas",
     "success_criterion": "Erro no Test Set compatível com Training Set sem degradação severa",
     "failure_criterion": "Divergência acentuada do erro no Test Set (overfitting)",
-    "notes": "Testado no falsification_suite.py com train set (Mercúrio-Marte) vs test set (Júpiter-Netuno)."
+    "notes": "Reclassificado em docs/PHENOMENOLOGY_STATUS.md como GENERIC EMPIRICAL FIT."
   }
 }
