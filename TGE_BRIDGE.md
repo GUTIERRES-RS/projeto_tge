@@ -4,7 +4,7 @@
 
 status_do_projeto: INITIAL_AUDIT_COMPLETED
 fase_atual: TGE-CORE-01 (Auditoria, Protocolo Bridge e Diagnóstico de Assinatura)
-ultimo_commit: 56eb56a1c5db23696564750567b870bba7a3faf6
+ultimo_commit: 65f447422e9391c795649ca47fa54a3cf3497c86
 ultimo_experimento: EXP-002-CAUSAL-CORE-01
 ultimo_resultado: Assinatura mista Lorentziana emergente real (59, 5, 0) para N=64 e (122, 6, 0) para N=128
 bloqueio_atual: Aguardando parecer do Auditor Externo para o TGE-CORE-01
