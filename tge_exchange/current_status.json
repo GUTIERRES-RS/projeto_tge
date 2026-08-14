@@ -1,12 +1,12 @@
 {
   "project": "TGE",
-  "version": "TGE-CORE-03",
+  "version": "TGE-CORE-02 -> TGE-CORE-03 (PRE-AUDIT)",
   "branch": "main",
-  "commit": "dfed478787889ed7c8f7c391c79729e77cae87e1",
-  "status": "TGE_CORE_03_COMPLETED",
-  "current_task": "Protocolo Integral de Governança, Reconciliação e Pipeline Oficial",
-  "last_experiment": "EXP-CORE-03-OFFICIAL-PIPELINE (Fases A, B, C, D e Suíte de 10 Testes)",
-  "last_result": "H1 FAILED (d_spec ~ 1.01); H2 FAILED / NOT_DEMONSTRATED (P((1,3)|TGE)=0.0); Target Leakage = 0",
-  "blocking_issue": "Aguardando avaliação final do Auditor Externo para AUDIT-CORE-03",
+  "commit": "ee3dc8de0f5609fb1917259b2fa191727d0b9777",
+  "status": "PRE_AUDIT_IN_PROGRESS",
+  "current_task": "Pré-Auditoria Global, Remoção de Default Silencioso de Krein e Reconciliação Epistemológica",
+  "last_experiment": "EXP-CORE-02-A (Eta Sweep) & EXP-CORE-02-B (Null Models)",
+  "last_result": "Default silencioso de eta removido; Controle eta=I colapsa em (128,0,0); H1 e H2 falsificadas no Dirac puro",
+  "blocking_issue": "Pré-Auditoria Global em andamento; aguardando revisão externa",
   "requires_external_audit": true
 }

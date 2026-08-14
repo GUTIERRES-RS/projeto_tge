@@ -2,12 +2,12 @@
 
 ## STATUS
 
-status_do_projeto: TGE_CORE_03_COMPLETED
-fase_atual: TGE-CORE-03 / TGE-RESEARCH-PROTOCOL (Execução Integral e Governança Epistemológica)
-ultimo_commit: dfed478787889ed7c8f7c391c79729e77cae87e1
-ultimo_experimento: EXP-CORE-03-OFFICIAL-PIPELINE
-ultimo_resultado: H1 FAILED (d_spec ~ 1.01); H2 FAILED / NOT_DEMONSTRATED (P((1,3)|TGE)=0.0); Target Leakage = 0; Controle eta=I colapsa em (128,0,0)
-bloqueio_atual: Aguardando parecer final do Auditor Externo para AUDIT-CORE-03
+status_do_projeto: PRE_AUDIT_IN_PROGRESS
+fase_atual: TGE-CORE-02 -> TGE-CORE-03 (Pré-Auditoria Global e Reconciliação Epistemológica)
+ultimo_commit: ee3dc8de0f5609fb1917259b2fa191727d0b9777
+ultimo_experimento: EXP-CORE-02-A (Eta Sweep) & EXP-CORE-02-B (Null Models)
+ultimo_resultado: Default silencioso de eta removido; Controle eta=I colapsa em (128,0,0); H1 e H2 falsificadas no Dirac puro
+bloqueio_atual: Pré-Auditoria Global em andamento; aguardando revisão do Auditor Externo
 requires_external_audit: true
 
 ---
