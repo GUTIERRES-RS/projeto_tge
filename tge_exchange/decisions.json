@@ -19,8 +19,16 @@
     "id": "DEC-003",
     "date": "2026-08-14",
     "decision": "Remoção de circularidade causal e classificação de eta como HIPÓTESE INSERIDA (TGE-CORE-02)",
-    "motive": "Reconhecimento de que a indefinição de G_eff é condicionada à estrutura eta fornecida externamente e não auto-emergente do Dirac puro",
-    "evidence": "TGE_CORE_02_REPORT.md, testes de varredura eta, controle eta=I e bateria de 6 modelos nulos",
-    "commit": "TGE-CORE-02"
+    "motive": "Reconhecimento de que a indefinição de G_eff decorre de eta e não emerge do Dirac puro; controle eta=I colapsa em (128,0,0)",
+    "evidence": "TGE_CORE_02_REPORT.md, testes de varredura eta e bateria de 6 modelos nulos",
+    "commit": "c4adcf218ef7cf1cf02dc5c54aa2688e6decd76e"
+  },
+  {
+    "id": "DEC-004",
+    "date": "2026-08-14",
+    "decision": "Implementação do Protocolo Integral TGE-CORE-03 e Pipeline Oficial Automatizado",
+    "motive": "Formalização das falhas de H1 e H2, isolamento de código legado, reconciliação analítica de d_spec e auditoria de vazamento de alvos",
+    "evidence": "TGE_CORE_03_REPORT.md, docs/*, tge/reports/TARGET_LEAKAGE_AUDIT.md e run_official_suite.py",
+    "commit": "TGE-CORE-03"
   }
 ]

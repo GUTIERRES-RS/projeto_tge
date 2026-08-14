@@ -20,20 +20,44 @@
   },
   {
     "request_id": "AUDIT-CORE-02",
-    "priority": "CRITICAL",
+    "priority": "HIGH",
     "question": "A assinatura causal é realmente emergente ou é herdada da estrutura eta fornecida?",
     "files": [
       "tge/core/causal_structure.py",
-      "tge/experiments/falsification_suite.py",
       "TGE_CORE_02_REPORT.md"
     ],
-    "commit": "TGE-CORE-02",
-    "experiment": "EXP-CORE-02-A-SWEEP / EXP-CORE-02-B-NULL-MODELS",
+    "commit": "c4adcf218ef7cf1cf02dc5c54aa2688e6decd76e",
+    "experiment": "EXP-CORE-02-A-SWEEP",
     "expected_audit": [
       "circularidade da estrutura de Krein eta",
       "status epistemologico de G_eff como metrica",
-      "diferenciacao contra modelos nulos",
-      "conclusao sobre H2 (NOT_DEMONSTRATED)"
+      "diferenciacao contra modelos nulos"
+    ],
+    "status": "ANSWERED"
+  },
+  {
+    "request_id": "AUDIT-CORE-03",
+    "priority": "CRITICAL",
+    "question": "O protocolo TGE-CORE-03 e os relatórios TGE_CORE_03_REPORT.md, REPOSITORY_AUDIT.md, TARGET_LEAKAGE_AUDIT.md e G_EFF_MATHEMATICAL_STATUS.md eliminam com sucesso todas as circularidades e formalizam corretamente as falhas das hipóteses H1 e H2?",
+    "files": [
+      "tge/core/causal_structure.py",
+      "tge/experiments/run_official_suite.py",
+      "TGE_CORE_03_REPORT.md",
+      "docs/G_EFF_MATHEMATICAL_STATUS.md",
+      "docs/SPECTRAL_DIMENSION_RECONCILIATION.md",
+      "docs/NEGATIVE_RESULTS.md",
+      "docs/PHENOMENOLOGY_STATUS.md",
+      "tge/reports/TARGET_LEAKAGE_AUDIT.md",
+      "tge/reports/REPOSITORY_AUDIT.md",
+      "LEGACY_CODE_POLICY.md"
+    ],
+    "commit": "TGE-CORE-03",
+    "experiment": "EXP-CORE-03-OFFICIAL-PIPELINE",
+    "expected_audit": [
+      "validade estatística dos modelos nulos",
+      "reconciliação analítica de d_spec",
+      "avaliação das 14 questões de G_eff",
+      "isenção total de target leakage"
     ],
     "status": "OPEN"
   }

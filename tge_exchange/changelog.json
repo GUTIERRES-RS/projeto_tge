@@ -24,5 +24,22 @@
       "Classificação honesta da Hipótese H2 como NOT_DEMONSTRATED / FAILED no modelo atual",
       "Criação do relatório analítico TGE_CORE_02_REPORT.md"
     ]
+  },
+  {
+    "version": "TGE-CORE-03",
+    "date": "2026-08-14",
+    "changes": [
+      "Criação de TGE_CORE_03_PREAUDIT.md com matriz de severidade",
+      "Criação de LEGACY_CODE_POLICY.md e isolamento formal de módulos legados",
+      "Criação de tge/reports/REPOSITORY_AUDIT.md com inventário exaustivo de 33 arquivos",
+      "Criação de tge/reports/TARGET_LEAKAGE_AUDIT.md com verificação estática de ausência de alvos",
+      "Criação de docs/G_EFF_MATHEMATICAL_STATUS.md respondendo formalmente às 14 questões",
+      "Criação de docs/NEGATIVE_RESULTS.md com preservação indelével de todas as falhas empíricas",
+      "Criação de docs/SPECTRAL_DIMENSION_RECONCILIATION.md reconciliando os regimes de d_spec",
+      "Criação de docs/PHENOMENOLOGY_STATUS.md avaliando módulos empíricos",
+      "Implementação dos experimentos oficiais TGE-CORE-03-A, B, C, D em causal_structure.py",
+      "Implementação do pipeline determinístico unificado tge/experiments/run_official_suite.py",
+      "Criação do relatório oficial final TGE_CORE_03_REPORT.md"
+    ]
   }
 ]

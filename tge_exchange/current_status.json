@@ -1,12 +1,12 @@
 {
   "project": "TGE",
-  "version": "TGE-CORE-02",
+  "version": "TGE-CORE-03",
   "branch": "main",
-  "commit": "c4adcf218ef7cf1cf02dc5c54aa2688e6decd76e",
-  "status": "TGE_CORE_02_COMPLETED",
-  "current_task": "Correção da Circularidade da Estrutura de Krein e Auditoria de G_eff",
-  "last_experiment": "TGE-CORE-02-A (Eta Sweep) & TGE-CORE-02-B (Null Models)",
-  "last_result": "Dependência de eta demonstrada; Controle eta=I colapsa em (128,0,0); H2 classificada como NOT_DEMONSTRATED",
-  "blocking_issue": "Aguardando parecer do Auditor Externo para AUDIT-CORE-02",
+  "commit": "",
+  "status": "TGE_CORE_03_COMPLETED",
+  "current_task": "Protocolo Integral de Governança, Reconciliação e Pipeline Oficial",
+  "last_experiment": "EXP-CORE-03-OFFICIAL-PIPELINE (Fases A, B, C, D e Suíte de 10 Testes)",
+  "last_result": "H1 FAILED (d_spec ~ 1.01); H2 FAILED / NOT_DEMONSTRATED (P((1,3)|TGE)=0.0); Target Leakage = 0",
+  "blocking_issue": "Aguardando avaliação final do Auditor Externo para AUDIT-CORE-03",
   "requires_external_audit": true
 }

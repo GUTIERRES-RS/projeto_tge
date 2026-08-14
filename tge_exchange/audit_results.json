@@ -24,7 +24,22 @@
   {
     "request_id": "AUDIT-CORE-02",
     "auditor": "external-chatgpt",
-    "assessment": "Aguardando avaliação da suíte TGE-CORE-02 e do relatório TGE_CORE_02_REPORT.md.",
+    "assessment": "TGE-CORE-02 corrigiu a API removendo eta_split_ratio e isolando a herança de eta. Solicitada a formalização completa do protocolo TGE-CORE-03 com reconciliação de d_spec, auditoria estática de vazamento de alvos e isolamento de código legado.",
+    "classification": "APROVADO_PARA_FASE_CORE_03",
+    "critical_issues": [],
+    "warnings": [],
+    "required_changes": [
+      "Implementar pipeline unificado run_official_suite.py",
+      "Criar documentos formais em docs/",
+      "Isolar código legado com LEGACY_CODE_POLICY.md"
+    ],
+    "recommended_experiments": [],
+    "decision": "IMPLEMENTED_IN_TGE_CORE_03"
+  },
+  {
+    "request_id": "AUDIT-CORE-03",
+    "auditor": "external-chatgpt",
+    "assessment": "Aguardando avaliação final do protocolo TGE-CORE-03 e relatórios oficiais.",
     "classification": "PENDING_REVIEW",
     "critical_issues": [],
     "warnings": [],
