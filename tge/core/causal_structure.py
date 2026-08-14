@@ -9,11 +9,12 @@ CLASSIFICAÇÃO EPISTEMOLÓGICA DE 3 NÍVEIS (TGE-CORE-03):
 - NÍVEL 2 (Construção Matemática): G_eff = D_Krein^dag D_Krein + i [eta, D] -> CLASSIFICAÇÃO: HYPOTHESIS / NOT_DEMONSTRATED
 - NÍVEL 3 (Resultado Calculado): signature(G_eff) = (pos, neg, zero) -> CLASSIFICAÇÃO: DERIVED_CONDITIONAL
 
-REGRAS ESTRITAS DE FALSIFICABILIDADE:
-1. NENHUMA assinatura (1,3,0) ou proporção 1:3 forçada por regras multiplicativas.
-2. NENHUMA seleção de janelas ou seeds orientada a produzir d=4 ou (1,3).
-3. Não classificar 'pos > 0 e neg > 0' como 'Lorentziana Emergente', mas sim como 'Indefinição Espectral Condicional'.
-4. Avaliação contra 6 modelos nulos e comparação de distribuições de probabilidade P(sig | Modelo).
+REGRAS ESTRITAS DE FALSIFICABILIDADE (TGE-CORE-03):
+1. NENHUM default causal silencioso ou implícito (eta deve ser explicitamente fornecido como hipótese).
+2. NENHUMA assinatura (1,3,0) ou proporção 1:3 forçada por regras multiplicativas.
+3. NENHUMA seleção de janelas ou seeds orientada a produzir d=4 ou (1,3).
+4. Não classificar 'pos > 0 e neg > 0' como 'Lorentziana Emergente', mas sim como 'Indefinição Espectral Condicional'.
+5. Avaliação contra 6 modelos nulos e comparação de distribuições de probabilidade P(sig | Modelo).
 """
 
 import numpy as np
@@ -50,7 +51,6 @@ class GenuineCausalStructureEngine:
         self.gamma_5 = np.diag(diag_gamma)
 
         # Estrutura real J (Operador anti-unitário clássico de Connes: J^2 = -I ou +I)
-        # Representação padrão J = gamma_2 * K (complex conjugation)
         self.J_real = np.zeros((self.dim, self.dim), dtype=complex)
         for i in range(0, self.dim - 1, 2):
             self.J_real[i, i + 1] = -1.0
@@ -129,7 +129,7 @@ class GenuineCausalStructureEngine:
             "total_janelas_avaliadas": len(all_windows),
             "autovalores_laplaciano_minimos": eigvals[:6].tolist(),
             "autovalores_laplaciano_maximos": eigvals[-6:].tolist(),
-            "status_4d": "FAILED (d_spec ~ 1.15 no Dirac puro sem calibragem)",
+            "status_4d": "FAILED (d_spec ~ 1.01 a 1.15 no Dirac puro sem calibragem)",
             "classificacao": "DERIVED"
         }
 
@@ -138,12 +138,6 @@ class GenuineCausalStructureEngine:
         EXPERIMENTO TGE-CORE-03-B (Investigação de Estruturas Geométricas Deriváveis):
         Analisa se objetos construídos exclusivamente a partir de (D, gamma_5, J)
         sem introduzir eta externamente podem produzir uma métrica espacial/temporal genuína.
-        Testa:
-        1. D puro (Hermitiano com autovalores positivos e negativos)
-        2. D^dag D (Positivo semidefinido Euclidiano)
-        3. Comutador Quiral i[gamma_5, D]
-        4. Forma Bilinear Real D_J = D + J D J^-1
-        5. Produto Quiral D_gamma = gamma_5 @ D
         """
         if self.D_base is None:
             self.initialize_dirac_base()
@@ -152,24 +146,24 @@ class GenuineCausalStructureEngine:
 
         # 1. D Puro
         eig_d = LA.eigvalsh(self.D_base)
-        pos_d, neg_d = int(np.sum(eig_d > tol)), int(np.sum(eig_d < tol))
+        pos_d, neg_d = int(np.sum(eig_d > tol)), int(np.sum(eig_d < -tol))
 
         # 2. D^2 = D^dag D
         L = self.D_base @ self.D_base
         eig_l = LA.eigvalsh(L)
-        pos_l, neg_l = int(np.sum(eig_l > tol)), int(np.sum(eig_l < tol))
+        pos_l, neg_l = int(np.sum(eig_l > tol)), int(np.sum(eig_l < -tol))
 
         # 3. Comutador Quiral i[gamma_5, D]
         comm_gamma = 1j * (self.gamma_5 @ self.D_base - self.D_base @ self.gamma_5)
         comm_gamma_sym = (comm_gamma + comm_gamma.conj().T) / 2.0
         eig_comm = LA.eigvalsh(comm_gamma_sym)
-        pos_comm, neg_comm = int(np.sum(eig_comm > tol)), int(np.sum(eig_comm < tol))
+        pos_comm, neg_comm = int(np.sum(eig_comm > tol)), int(np.sum(eig_comm < -tol))
 
         # 4. Operador Quiral D_gamma = gamma_5 @ D
         D_gam = self.gamma_5 @ self.D_base
         D_gam_sym = (D_gam + D_gam.conj().T) / 2.0
         eig_dgam = LA.eigvalsh(D_gam_sym)
-        pos_dgam, neg_dgam = int(np.sum(eig_dgam > tol)), int(np.sum(eig_dgam < tol))
+        pos_dgam, neg_dgam = int(np.sum(eig_dgam > tol)), int(np.sum(eig_dgam < -tol))
 
         return {
             "experimento": "TGE-CORE-03-B (Investigação de Indefinição Geométrica Derivável)",
@@ -210,10 +204,11 @@ class GenuineCausalStructureEngine:
         self,
         eta_matrix: Optional[np.ndarray] = None,
         split_ratio: Optional[float] = None,
-        eta_type: str = "CANONICAL_SPLIT"
+        eta_type: str = "EXPLICIT_HYPOTHESIS"
     ) -> np.ndarray:
         """
-        Define a estrutura de Krein eta (NÍVEL 1: HIPÓTESE INSERIDA).
+        Define explicitamente a estrutura de Krein eta (NÍVEL 1: HIPÓTESE INSERIDA).
+        NÃO EXISTE DEFAULT SILENCIOSO. eta deve ser fornecido via matriz ou split explícito.
         """
         if eta_matrix is not None:
             self.eta = eta_matrix
@@ -224,10 +219,10 @@ class GenuineCausalStructureEngine:
             self.eta = np.diag(diag_eta)
             self.eta_type = f"SPLIT_RATIO_{split_ratio}"
         else:
-            half = self.dim // 2
-            diag_eta = np.array([1.0] * half + [-1.0] * (self.dim - half))
-            self.eta = np.diag(diag_eta)
-            self.eta_type = "DEFAULT_BIPARTITE_0.5"
+            raise ValueError(
+                "Estrutura de Krein (eta) deve ser explicitamente fornecida como HIPÓTESE. "
+                "Defaults implícitos são proibidos pelo Protocolo TGE-CORE-03."
+            )
 
         return self.eta
 
@@ -241,8 +236,10 @@ class GenuineCausalStructureEngine:
 
         current_eta = eta if eta is not None else self.eta
         if current_eta is None:
-            self.set_krein_structure_hypothesis()
-            current_eta = self.eta
+            raise ValueError(
+                "Estrutura de Krein (eta) não definida para cálculo de G_eff. "
+                "Forneça eta explicitamente via set_krein_structure_hypothesis() ou como argumento."
+            )
 
         D_krein = current_eta @ self.D_base
         comm = 1j * (current_eta @ self.D_base - self.D_base @ current_eta)
@@ -264,8 +261,10 @@ class GenuineCausalStructureEngine:
 
         current_eta = eta if eta is not None else self.eta
         if current_eta is None:
-            self.set_krein_structure_hypothesis()
-            current_eta = self.eta
+            raise ValueError(
+                "Estrutura de Krein (eta) não definida para extração de assinatura. "
+                "Forneça eta explicitamente via set_krein_structure_hypothesis() ou como argumento."
+            )
 
         eigvals_eta = LA.eigvalsh(current_eta)
         eta_pos = int(np.sum(eigvals_eta > tolerance))
@@ -335,11 +334,11 @@ def run_experiment_tge_core_03_c_krein_invariances(
     engine = GenuineCausalStructureEngine(matrix_dim=matrix_dim, random_seed=seed)
     engine.initialize_dirac_base()
 
-    # 1. eta = I
+    # 1. eta = I (Controle Negativo Euclidiano Puro)
     res_id = engine.extract_raw_causal_signature(eta=np.eye(matrix_dim, dtype=complex))
 
-    # 2. eta = -eta
-    engine.set_krein_structure_hypothesis(split_ratio=0.5)
+    # 2. eta = -eta (com split explícito de hipótese 0.5)
+    engine.set_krein_structure_hypothesis(split_ratio=0.5, eta_type="EXPLICIT_SPLIT_0.5")
     eta_std = engine.eta
     res_std = engine.extract_raw_causal_signature(eta=eta_std)
     res_minus = engine.extract_raw_causal_signature(eta=-eta_std)
@@ -390,7 +389,7 @@ def run_experiment_tge_core_03_d_null_models_and_statistics(
     EXPERIMENTO TGE-CORE-03-D (Modelos Nulos e Análise Estatística Formal):
     Executa Ensaio de Monte Carlo (N amostras) para comparar a distribuição de assinaturas,
     gaps espectrais e condicionamento entre:
-    1. TGE com Krein Standard (D GUE + eta 0.5)
+    1. TGE com Krein Standard (D GUE + eta 0.5 explícito)
     2. Random Hermitian Matrix (GUE Puro)
     3. Random Symmetric Matrix (GOE Puro)
     4. Pure Dirac Operator (eta = I, Euclidiano)
@@ -410,10 +409,10 @@ def run_experiment_tge_core_03_d_null_models_and_statistics(
     for seed in range(base_seed, base_seed + num_mc_samples):
         np.random.seed(seed)
 
-        # 1. TGE Krein Standard
+        # 1. TGE Krein (hipótese explícita split 0.5)
         eng = GenuineCausalStructureEngine(matrix_dim=matrix_dim, random_seed=seed)
         eng.initialize_dirac_base()
-        eng.set_krein_structure_hypothesis(split_ratio=0.5)
+        eng.set_krein_structure_hypothesis(split_ratio=0.5, eta_type="EXPLICIT_SPLIT_0.5")
         res_tge = eng.extract_raw_causal_signature()
         signatures_tge.append(res_tge["g_eff_assinatura_bruta"])
         gaps_tge.append(res_tge["spectral_gap_minimo"])
@@ -440,7 +439,6 @@ def run_experiment_tge_core_03_d_null_models_and_statistics(
         neg_goe = int(np.sum(eig_goe < -tol))
         signatures_goe.append((pos_goe, neg_goe, matrix_dim - pos_goe - neg_goe))
 
-    # Cálculo das Frequências Relativas P(signature | Modelo)
     def compute_freq_dist(sig_list):
         counts = {}
         for s in sig_list:
@@ -454,7 +452,6 @@ def run_experiment_tge_core_03_d_null_models_and_statistics(
     p_sig_goe = compute_freq_dist(signatures_goe)
     p_sig_euc = compute_freq_dist(signatures_euclidean)
 
-    # Probabilidade de emergir (1,3) ou (3,1) em qualquer modelo
     p_1_3_tge = p_sig_tge.get("(1, 3, 0)", 0.0) + p_sig_tge.get("(3, 1, 0)", 0.0)
 
     return {

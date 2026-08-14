@@ -2,7 +2,7 @@
   "pipeline_name": "TGE-OFFICIAL-VERIFICATION-PIPELINE",
   "protocol_version": "TGE-CORE-03",
   "environment": {
-    "timestamp": "2026-08-14T13:18:31.999326",
+    "timestamp": "2026-08-14T13:26:57.096920",
     "python_version": "3.14.3 (tags/v3.14.3:323c59a, Feb  3 2026, 16:04:56) [MSC v.1944 64 bit (AMD64)]",
     "numpy_version": "2.5.2",
     "scipy_version": "1.18.0",
@@ -11,14 +11,14 @@
     "working_directory": "D:\\GOOGLE\\projeto_tge"
   },
   "code_integrity_hashes": {
-    "tge/core/causal_structure.py": "d189302779b434a158013ff03d000c8aed08c7bf39e7a86ee4b414c8809c7e3e",
-    "tge/experiments/falsification_suite.py": "3bbee9110db844070baf109764b9245539a0ad0ad2518efd7659c78753865193",
+    "tge/core/causal_structure.py": "b83112a07ade601fe925194bf1a6bc700687faa4882a15ed32066b5ce1522fd6",
+    "tge/experiments/falsification_suite.py": "219ca9fdd0b4ceeee0e5d0db0b4a1c811e68553960e6c5a87f9b80a02782ac49",
     "tge/audit/parameter_registry.py": "02d020cbf3190d6a10821c696faf0df8f4cadbe3089ddaea86f12f3eea9dfc4d",
     "tge/audit/tge_audit.py": "fec064207fd6ddaaa857a994517d2b4f0981a5c2567b3cefaca03823e6b4878d",
-    "hypotheses.yaml": "2c5d650a18dca3f7a1679dbc958a91c8bf9844ec816262ec4a488e702e97a0d4"
+    "hypotheses.yaml": "748291ae97f792dad73e8cfc8bd9d1dd55061ecfd7b574a00ff73d105f5065ff"
   },
-  "execution_start": "2026-08-14T13:18:31.999326",
-  "execution_end": "2026-08-14T13:18:33.706599",
+  "execution_start": "2026-08-14T13:26:57.096920",
+  "execution_end": "2026-08-14T13:26:59.040943",
   "tge_core_03_a": {
     "experimento": "TGE-CORE-03-A (Dimensão Espectral de Heat Kernel no Dirac Puro)",
     "dimensao_n": 128,
@@ -47,7 +47,7 @@
       479.53082935284743,
       508.0233754543757
     ],
-    "status_4d": "FAILED (d_spec ~ 1.15 no Dirac puro sem calibragem)",
+    "status_4d": "FAILED (d_spec ~ 1.01 a 1.15 no Dirac puro sem calibragem)",
     "classificacao": "DERIVED"
   },
   "tge_core_03_b": {
@@ -293,7 +293,7 @@
     "teste_10": "ROBUSTO A RUÍDO POUCO EXPRESSIVO"
   },
   "hypotheses_verdict": {
-    "H1_Spectral_Dimension_4D": "FAILED (d_spec ~ 1.15 no Dirac puro sem calibragem)",
+    "H1_Spectral_Dimension_4D": "FAILED (d_spec ~ 1.01 a 1.15 no Dirac puro sem calibragem)",
     "H2_Lorentzian_Causal_Emergence_1_3": "FAILED / NOT_DEMONSTRATED"
   },
   "epistemological_conclusion": "1. H1 FALSIFICADA no Dirac puro (d_spec ~ 1.01 a 1.15).\n2. H2 NÃO DEMONSTRADA: P((1,3) | TGE) = 0.0. A indefinição é herdada externamente de eta.\n3. Controle Negativo (eta=I) produz 100% de colapso euclidiano positivo (128, 0, 0).\n4. Nenhum resultado foi mascarado ou recalibrado artificialmente."

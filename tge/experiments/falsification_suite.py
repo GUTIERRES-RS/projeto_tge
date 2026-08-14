@@ -3,7 +3,7 @@ falsification_suite.py - TGE Falsification Suite (10 Testes Falsificáveis Atual
 
 Executa automaticamente os 10 testes fundamentais da TGE conforme determinado no Prompt Mestre e Protocolo TGE-CORE-03:
 1. Emergência dimensional (d_spec)
-2. Assinatura causal real (sem 1:3 forçado e condicional a eta)
+2. Assinatura causal real (sem 1:3 forçado e condicional a eta explícito)
 3. Estabilidade em N
 4. Estabilidade em seeds
 5. Robustez espectral de escalas
@@ -62,10 +62,12 @@ class TGEFalsificationSuite:
         }
 
     def test_2_causal_signature(self) -> Dict[str, Any]:
-        """TESTE 2: Assinatura Causal Real e Rastreabilidade de Krein."""
+        """TESTE 2: Assinatura Causal Real e Rastreabilidade de Krein sob Hipótese Explícita."""
         signatures = []
         for seed in self.seeds:
             engine = GenuineCausalStructureEngine(matrix_dim=128, random_seed=seed)
+            engine.initialize_dirac_base()
+            engine.set_krein_structure_hypothesis(split_ratio=0.5, eta_type="EXPLICIT_HYPOTHESIS_0.5")
             diag = engine.extract_raw_causal_signature()
             signatures.append(diag["g_eff_assinatura_bruta"])
 
@@ -80,10 +82,12 @@ class TGEFalsificationSuite:
         }
 
     def test_3_resolution_stability(self) -> Dict[str, Any]:
-        """TESTE 3: Estabilidade em N."""
+        """TESTE 3: Estabilidade em N sob Hipótese Explícita."""
         res_map = {}
         for n in self.resolutions:
             engine = GenuineCausalStructureEngine(matrix_dim=n, random_seed=2026)
+            engine.initialize_dirac_base()
+            engine.set_krein_structure_hypothesis(split_ratio=0.5, eta_type="EXPLICIT_HYPOTHESIS_0.5")
             diag = engine.extract_raw_causal_signature()
             res_map[f"N={n}"] = diag["g_eff_assinatura_bruta"]
 
@@ -94,8 +98,15 @@ class TGEFalsificationSuite:
         }
 
     def test_4_seed_stability(self) -> Dict[str, Any]:
-        """TESTE 4: Estabilidade em Seeds."""
-        sigs = [GenuineCausalStructureEngine(128, seed).extract_raw_causal_signature()["g_eff_assinatura_bruta"] for seed in self.seeds]
+        """TESTE 4: Estabilidade em Seeds sob Hipótese Explícita."""
+        sigs = []
+        for seed in self.seeds:
+            engine = GenuineCausalStructureEngine(128, seed)
+            engine.initialize_dirac_base()
+            engine.set_krein_structure_hypothesis(split_ratio=0.5, eta_type="EXPLICIT_HYPOTHESIS_0.5")
+            diag = engine.extract_raw_causal_signature()
+            sigs.append(diag["g_eff_assinatura_bruta"])
+
         unil = len(set(sigs)) == 1
 
         return {
@@ -108,6 +119,8 @@ class TGEFalsificationSuite:
     def test_5_uv_ir_robustness(self) -> Dict[str, Any]:
         """TESTE 5: Faixa de Escalas Espectrais (Spectral Scale Range)."""
         engine = GenuineCausalStructureEngine(128, 2026)
+        engine.initialize_dirac_base()
+        engine.set_krein_structure_hypothesis(split_ratio=0.5, eta_type="EXPLICIT_HYPOTHESIS_0.5")
         G_sym = engine.compute_effective_metric_tensor()
         eigvals = LA.eigvalsh(G_sym)
         uv_cutoff = float(np.max(eigvals))
@@ -179,8 +192,10 @@ class TGEFalsificationSuite:
         }
 
     def test_10_sensitivity_analysis(self) -> Dict[str, Any]:
-        """TESTE 10: Análise de Sensibilidade a Ruído."""
+        """TESTE 10: Análise de Sensibilidade a Ruído sob Hipótese Explícita."""
         engine = GenuineCausalStructureEngine(128, 2026)
+        engine.initialize_dirac_base()
+        engine.set_krein_structure_hypothesis(split_ratio=0.5, eta_type="EXPLICIT_HYPOTHESIS_0.5")
         G_sym = engine.compute_effective_metric_tensor()
         
         np.random.seed(2026)
