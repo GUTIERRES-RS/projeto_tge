@@ -2,7 +2,7 @@
   "project": "TGE",
   "version": "TGE-CORE-02",
   "branch": "main",
-  "commit": "",
+  "commit": "c4adcf218ef7cf1cf02dc5c54aa2688e6decd76e",
   "status": "TGE_CORE_02_COMPLETED",
   "current_task": "Correção da Circularidade da Estrutura de Krein e Auditoria de G_eff",
   "last_experiment": "TGE-CORE-02-A (Eta Sweep) & TGE-CORE-02-B (Null Models)",

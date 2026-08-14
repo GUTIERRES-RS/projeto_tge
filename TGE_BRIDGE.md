@@ -4,7 +4,7 @@
 
 status_do_projeto: TGE_CORE_02_COMPLETED
 fase_atual: TGE-CORE-02 (Correção de Circularidade da Estrutura de Krein & Auditoria de G_eff)
-ultimo_commit: TGE-CORE-02
+ultimo_commit: c4adcf218ef7cf1cf02dc5c54aa2688e6decd76e
 ultimo_experimento: EXP-CORE-02-B-NULL-MODELS
 ultimo_resultado: Dependência direta de eta comprovada; Controle eta=I colapsa em (128,0,0); H2 classificada honestamente como FAILED / NOT_DEMONSTRATED
 bloqueio_atual: Aguardando parecer do Auditor Externo para AUDIT-CORE-02
