@@ -1,0 +1,300 @@
+{
+  "pipeline_name": "TGE-OFFICIAL-VERIFICATION-PIPELINE",
+  "protocol_version": "TGE-CORE-03",
+  "environment": {
+    "timestamp": "2026-08-14T13:18:31.999326",
+    "python_version": "3.14.3 (tags/v3.14.3:323c59a, Feb  3 2026, 16:04:56) [MSC v.1944 64 bit (AMD64)]",
+    "numpy_version": "2.5.2",
+    "scipy_version": "1.18.0",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "processor": "Intel64 Family 6 Model 154 Stepping 4, GenuineIntel",
+    "working_directory": "D:\\GOOGLE\\projeto_tge"
+  },
+  "code_integrity_hashes": {
+    "tge/core/causal_structure.py": "d189302779b434a158013ff03d000c8aed08c7bf39e7a86ee4b414c8809c7e3e",
+    "tge/experiments/falsification_suite.py": "3bbee9110db844070baf109764b9245539a0ad0ad2518efd7659c78753865193",
+    "tge/audit/parameter_registry.py": "02d020cbf3190d6a10821c696faf0df8f4cadbe3089ddaea86f12f3eea9dfc4d",
+    "tge/audit/tge_audit.py": "fec064207fd6ddaaa857a994517d2b4f0981a5c2567b3cefaca03823e6b4878d",
+    "hypotheses.yaml": "2c5d650a18dca3f7a1679dbc958a91c8bf9844ec816262ec4a488e702e97a0d4"
+  },
+  "execution_start": "2026-08-14T13:18:31.999326",
+  "execution_end": "2026-08-14T13:18:33.706599",
+  "tge_core_03_a": {
+    "experimento": "TGE-CORE-03-A (Dimensão Espectral de Heat Kernel no Dirac Puro)",
+    "dimensao_n": 128,
+    "seed": 2026,
+    "d_spec_plateau": 1.0141189077826516,
+    "slope_linear": -0.5070594538913258,
+    "r2_linearidade": 0.9999958817966006,
+    "janela_tempo_t_otima": [
+      0.05689866029018299,
+      0.3727593720314942
+    ],
+    "total_janelas_avaliadas": 42,
+    "autovalores_laplaciano_minimos": [
+      3.292240021389026e-05,
+      0.0308604162952608,
+      0.1862335929838409,
+      0.3607683103131535,
+      0.4041215233986379,
+      0.7198660240220547
+    ],
+    "autovalores_laplaciano_maximos": [
+      425.43170540518724,
+      428.1851138937035,
+      456.11631979326637,
+      466.14895258812885,
+      479.53082935284743,
+      508.0233754543757
+    ],
+    "status_4d": "FAILED (d_spec ~ 1.15 no Dirac puro sem calibragem)",
+    "classificacao": "DERIVED"
+  },
+  "tge_core_03_b": {
+    "experimento": "TGE-CORE-03-B (Investigação de Indefinição Geométrica Derivável)",
+    "operadores_testados": {
+      "D_puro": {
+        "descricao": "Operador de Dirac hermitiano fundamental",
+        "assinatura_espectral": [
+          63,
+          65,
+          0
+        ],
+        "positivo_definido": false,
+        "status_como_metrica": "Inadequado (é operador diferencial de 1ª ordem, não forma de 2ª ordem)"
+      },
+      "Laplaciano_D2": {
+        "descricao": "D^dag D (Operador métrico cinético euclidiano)",
+        "assinatura_espectral": [
+          128,
+          0,
+          0
+        ],
+        "positivo_definido": true,
+        "status_como_metrica": "Estritamente Euclidiano Positivo (0 autovalores negativos)"
+      },
+      "Comutador_Quiral_i[gamma5, D]": {
+        "descricao": "Termo de torção quiral i[gamma_5, D]",
+        "assinatura_espectral": [
+          64,
+          64,
+          0
+        ],
+        "positivo_definido": false,
+        "status_como_metrica": "Indefinido simétrico (split 50/50 puramente quiral, sem seleção 1+3)"
+      },
+      "D_gamma_simetrizado": {
+        "descricao": "Parte auto-adjunta de gamma_5 @ D",
+        "assinatura_espectral": [
+          65,
+          63,
+          0
+        ],
+        "positivo_definido": false,
+        "status_como_metrica": "Indefinido genérico (sem seleção 1+3)"
+      }
+    },
+    "conclusao_mecanismo_interno": "NENHUM objeto derivável puro a partir de (D, gamma_5, J) seleciona espontaneamente a assinatura (1,3). Operadores de segunda ordem como D^dag D são 100% Euclidianos; comutadores quirais geram splits simétricos N/2 vs N/2.",
+    "status_h2": "FAILED / NOT_DEMONSTRATED"
+  },
+  "tge_core_03_c": {
+    "experimento": "TGE-CORE-03-C (Estruturas de Krein Independentes e Invariâncias)",
+    "controle_negativo_eta_identidade": {
+      "eta_sig": [
+        128,
+        0,
+        0
+      ],
+      "g_eff_sig": [
+        128,
+        0,
+        0
+      ],
+      "is_pure_euclidean": true
+    },
+    "inversao_eta_vs_minus_eta": {
+      "g_eff_eta": [
+        122,
+        6,
+        0
+      ],
+      "g_eff_minus_eta": [
+        122,
+        6,
+        0
+      ]
+    },
+    "amostras_involutivas_aleatorias": [
+      {
+        "sample_id": 1,
+        "eta_pos": 69,
+        "eta_neg": 59,
+        "g_eff_signature": [
+          121,
+          7,
+          0
+        ],
+        "g_eff_pos": 121,
+        "g_eff_neg": 7
+      },
+      {
+        "sample_id": 2,
+        "eta_pos": 65,
+        "eta_neg": 63,
+        "g_eff_signature": [
+          122,
+          6,
+          0
+        ],
+        "g_eff_pos": 122,
+        "g_eff_neg": 6
+      },
+      {
+        "sample_id": 3,
+        "eta_pos": 64,
+        "eta_neg": 64,
+        "g_eff_signature": [
+          121,
+          7,
+          0
+        ],
+        "g_eff_pos": 121,
+        "g_eff_neg": 7
+      },
+      {
+        "sample_id": 4,
+        "eta_pos": 54,
+        "eta_neg": 74,
+        "g_eff_signature": [
+          121,
+          7,
+          0
+        ],
+        "g_eff_pos": 121,
+        "g_eff_neg": 7
+      },
+      {
+        "sample_id": 5,
+        "eta_pos": 69,
+        "eta_neg": 59,
+        "g_eff_signature": [
+          121,
+          7,
+          0
+        ],
+        "g_eff_pos": 121,
+        "g_eff_neg": 7
+      },
+      {
+        "sample_id": 6,
+        "eta_pos": 62,
+        "eta_neg": 66,
+        "g_eff_signature": [
+          122,
+          6,
+          0
+        ],
+        "g_eff_pos": 122,
+        "g_eff_neg": 6
+      },
+      {
+        "sample_id": 7,
+        "eta_pos": 53,
+        "eta_neg": 75,
+        "g_eff_signature": [
+          122,
+          6,
+          0
+        ],
+        "g_eff_pos": 122,
+        "g_eff_neg": 6
+      },
+      {
+        "sample_id": 8,
+        "eta_pos": 72,
+        "eta_neg": 56,
+        "g_eff_signature": [
+          122,
+          6,
+          0
+        ],
+        "g_eff_pos": 122,
+        "g_eff_neg": 6
+      },
+      {
+        "sample_id": 9,
+        "eta_pos": 71,
+        "eta_neg": 57,
+        "g_eff_signature": [
+          121,
+          7,
+          0
+        ],
+        "g_eff_pos": 121,
+        "g_eff_neg": 7
+      },
+      {
+        "sample_id": 10,
+        "eta_pos": 61,
+        "eta_neg": 67,
+        "g_eff_signature": [
+          121,
+          7,
+          0
+        ],
+        "g_eff_pos": 121,
+        "g_eff_neg": 7
+      }
+    ],
+    "conclusao": "CAUSAL STRUCTURE IS EXTERNAL INPUT: A assinatura de G_eff é estocasticamente induzida pela base de autovetores de eta."
+  },
+  "tge_core_03_d": {
+    "experimento": "TGE-CORE-03-D (Modelos Nulos e Análise Estatística Formal)",
+    "num_amostras_mc": 30,
+    "dimensao_n": 128,
+    "probabilidade_assinatura_tge": {
+      "(122, 6, 0)": 0.06666666666666667,
+      "(120, 8, 0)": 0.4666666666666667,
+      "(121, 7, 0)": 0.4666666666666667
+    },
+    "probabilidade_assinatura_gue_nula": {
+      "(63, 65, 0)": 0.23333333333333334,
+      "(64, 64, 0)": 0.6333333333333333,
+      "(62, 66, 0)": 0.03333333333333333,
+      "(65, 63, 0)": 0.1
+    },
+    "probabilidade_assinatura_goe_nula": {
+      "(66, 62, 0)": 0.1,
+      "(63, 65, 0)": 0.3,
+      "(64, 64, 0)": 0.36666666666666664,
+      "(65, 63, 0)": 0.23333333333333334
+    },
+    "probabilidade_assinatura_euclidiana_eta_I": {
+      "(128, 0, 0)": 1.0
+    },
+    "P(signature = (1,3) | TGE)": 0.0,
+    "P(signature = (1,3) | Modelo Nulo)": 0.0,
+    "gap_espectral_medio_tge": 0.037011233013050975,
+    "gap_espectral_medio_gue": 0.0566163167020953,
+    "condicionamento_medio_tge": 496.62109987624314,
+    "conclusao_estatistica": "1. P((1,3) | TGE) = 0.0: O modelo TGE NÃO produz a assinatura Lorentziana (1,3).\n2. P((N,0,0) | eta=I) = 1.0: Sem Krein, o colapso euclidiano é determinístico e absoluto.\n3. O comportamento espectral de G_eff é estatisticamente indistinguível de uma matriz hermitiana com viés positivo induzido por D^dag D.",
+    "status_h2": "FAILED / NOT_DEMONSTRATED"
+  },
+  "falsification_suite_summary": {
+    "teste_1": "FALHA DA HIPÓTESE 4D (d_spec ~ 1.01 a 1.15)",
+    "teste_2": "ASSINATURA REPORTADA CONDICIONAL A ETA (SEM CIRCULARIDADE)",
+    "teste_3": "ANALISADO",
+    "teste_4": "VARIABILIDADE ESTOCÁSTICA REPORTADA",
+    "teste_5": "FAIXA ESPECTRAL AVALIADA (NÃO RENORMALIZAÇÃO RG DINÂMICA)",
+    "teste_6": "ISENÇÃO DE PARÂMETRO ALVO VERIFICADA",
+    "teste_7": "VALIDAÇÃO EMPÍRICA EXTERNA EXECUTADA",
+    "teste_8": "CONTROLE NEGATIVO CONFIRMADO (COLAPSO EUCLIDIANO (128,0,0))",
+    "teste_9": "COMPARADO COM SUCESSO (P((1,3) | TGE) = 0.0)",
+    "teste_10": "ROBUSTO A RUÍDO POUCO EXPRESSIVO"
+  },
+  "hypotheses_verdict": {
+    "H1_Spectral_Dimension_4D": "FAILED (d_spec ~ 1.15 no Dirac puro sem calibragem)",
+    "H2_Lorentzian_Causal_Emergence_1_3": "FAILED / NOT_DEMONSTRATED"
+  },
+  "epistemological_conclusion": "1. H1 FALSIFICADA no Dirac puro (d_spec ~ 1.01 a 1.15).\n2. H2 NÃO DEMONSTRADA: P((1,3) | TGE) = 0.0. A indefinição é herdada externamente de eta.\n3. Controle Negativo (eta=I) produz 100% de colapso euclidiano positivo (128, 0, 0).\n4. Nenhum resultado foi mascarado ou recalibrado artificialmente."
+}

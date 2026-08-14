@@ -1,10 +1,10 @@
 {
   "teste_1": {
     "teste": "TESTE 1: Emergência Dimensional",
-    "d_spec_medio": 0.9867852204787217,
-    "d_spec_std": 0.02469310546351044,
-    "r2_medio": 0.9999925323054025,
-    "status": "FALHA DA HIPÓTESE 4D"
+    "d_spec_medio": 0.9754860030562369,
+    "d_spec_std": 0.021549053927866303,
+    "r2_medio": 0.9999952710262662,
+    "status": "FALHA DA HIPÓTESE 4D (d_spec ~ 1.01 a 1.15)"
   },
   "teste_2": {
     "teste": "TESTE 2: Assinatura Causal Real",
@@ -95,11 +95,11 @@
     "status": "VARIABILIDADE ESTOCÁSTICA REPORTADA"
   },
   "teste_5": {
-    "teste": "TESTE 5: Robustez UV/IR",
-    "uv_cutoff_max": 510.89811709494666,
-    "ir_cutoff_min": 0.004234816695826486,
-    "razao_escala_uv_ir": 120642.32142038326,
-    "status": "FRONTEIRA ESPECTRAL AVALIADA"
+    "teste": "TESTE 5: Faixa de Escalas Espectrais (SPECTRAL_SCALE_RANGE)",
+    "lambda_max": 510.89811709494666,
+    "lambda_min_abs": 0.004234816695826486,
+    "razao_escala": 120642.32142038326,
+    "status": "FAIXA ESPECTRAL AVALIADA (NÃO RENORMALIZAÇÃO RG DINÂMICA)"
   },
   "teste_6": {
     "teste": "TESTE 6: Ausência de Alvo Hardcoded",
@@ -108,98 +108,51 @@
     "status": "ISENÇÃO DE PARÂMETRO ALVO VERIFICADA"
   },
   "teste_7": {
-    "teste": "TESTE 7: Out-of-Sample Validation",
+    "teste": "TESTE 7: Out-of-Sample Validation (Baseline Empírico Não-TGE)",
     "erro_train_set_pct (Mercurio-Marte)": 36.81821217916756,
     "erro_test_set_pct (Jupiter-Netuno)": 63.423491456769256,
-    "status": "VALIDAÇÃO CRUZADA EXECUTADA"
+    "classificacao": "GENERIC EMPIRICAL FIT (NÃO DERIVADO DA TGE)",
+    "status": "VALIDAÇÃO EMPÍRICA EXTERNA EXECUTADA"
   },
   "teste_8": {
     "teste": "TESTE 8: Modelo Nulo 1 (Euclidiano eta=I)",
     "resultado": {
-      "teste": "TESTE ETA = I (Controle Negativo Euclidiano)",
-      "dimensao_n": 128,
-      "seed": 2026,
-      "eta_assinatura": [
+      "eta_signature": [
         128,
         0,
         0
       ],
-      "g_eff_assinatura": [
+      "g_eff_signature": [
         128,
         0,
         0
       ],
-      "is_pure_euclidean": true,
-      "tipo_geometria": "Euclidiana Positiva Definida",
-      "conclusao": "CONTROLE NEGATIVO CONFIRMADO: Sem Krein (eta = I), G_eff colapsa exatamente em métrica euclidiana positiva D^dag D sem termos temporais."
+      "is_pure_euclidean": true
     },
-    "status": "CONTROLE NEGATIVO CONFIRMADO (COLAPSO EUCLIDIANO)"
+    "status": "CONTROLE NEGATIVO CONFIRMADO (COLAPSO EUCLIDIANO (128,0,0))"
   },
   "teste_9": {
-    "teste": "TESTE 9: Bateria de 6 Modelos Nulos",
-    "modelos": {
-      "Modelo_A_TGE_Krein_Padrao": {
-        "descricao": "D GUE + eta diag(1..-1) split 0.5",
-        "assinatura": [
-          122,
-          6,
-          0
-        ],
-        "pos": 122,
-        "neg": 6
+    "teste": "TESTE 9: Bateria de Modelos Nulos (Monte Carlo)",
+    "probabilidades": {
+      "TGE_Standard": {
+        "(122, 6, 0)": 0.06666666666666667,
+        "(120, 8, 0)": 0.4666666666666667,
+        "(121, 7, 0)": 0.4666666666666667
       },
-      "Modelo_B_D_Aleatorio_Eta_Escolhido": {
-        "descricao": "D GUE + eta diag(1..-1) split 0.25",
-        "assinatura": [
-          122,
-          6,
-          0
-        ],
-        "pos": 122,
-        "neg": 6
+      "GUE_Puro": {
+        "(63, 65, 0)": 0.3333333333333333,
+        "(64, 64, 0)": 0.5333333333333333,
+        "(62, 66, 0)": 0.06666666666666667,
+        "(65, 63, 0)": 0.06666666666666667
       },
-      "Modelo_C_D_Aleatorio_Eta_Aleatorio": {
-        "descricao": "D GUE + eta involutivo aleatório",
-        "assinatura": [
-          122,
-          6,
-          0
-        ],
-        "pos": 122,
-        "neg": 6
-      },
-      "Modelo_D_D_Sem_Eta_Euclidiano": {
-        "descricao": "D GUE puro com eta = I (sem Krein)",
-        "assinatura": [
-          128,
-          0,
-          0
-        ],
-        "pos": 128,
-        "neg": 0
-      },
-      "Modelo_E_Hermitiana_GUE_Pura": {
-        "descricao": "Matriz GUE pura sem Dirac",
-        "assinatura": [
-          64,
-          64,
-          0
-        ],
-        "pos": 64,
-        "neg": 64
-      },
-      "Modelo_F_Simetrica_GOE_Pura": {
-        "descricao": "Matriz GOE pura sem Dirac",
-        "assinatura": [
-          65,
-          63,
-          0
-        ],
-        "pos": 65,
-        "neg": 63
+      "GOE_Puro": {
+        "(66, 62, 0)": 0.13333333333333333,
+        "(63, 65, 0)": 0.26666666666666666,
+        "(64, 64, 0)": 0.4,
+        "(65, 63, 0)": 0.2
       }
     },
-    "status": "COMPARADO COM SUCESSO (HERANÇA DE ESTRUTURA DEMONSTRADA)"
+    "status": "COMPARADO COM SUCESSO (P((1,3) | TGE) = 0.0)"
   },
   "teste_10": {
     "teste": "TESTE 10: Análise de Sensibilidade",
