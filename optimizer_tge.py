@@ -92,12 +92,62 @@ class SpectralGlobalOptimizer:
         }
 
 
+    def run_optimization_v15(self) -> Dict[str, Any]:
+        """
+        Executa a busca global variacional multivariada para o modelo TGE-15.0 ToE.
+        """
+        p0 = np.array([0.985, 1.095, 0.148, 0.022, 0.865, 0.115, 0.082, 0.388, 0.00014])
+
+        bounds = [
+            (0.8, 1.3),    # alpha1
+            (0.8, 1.6),    # alpha2
+            (0.0, 0.5),    # beta
+            (0.0, 0.10),   # gamma_a6
+            (0.0, 2.0),    # delta_kuiper
+            (0.0, 0.4),    # xi_resonance
+            (0.0, 0.3),    # zeta_tidal
+            (0.2, 0.8),    # escala_base
+            (0.0, 0.001)   # kappa_sm
+        ]
+
+        print("[Otimizador Espectral] Minimizando Ação Espectral TGE-15.0 (ToE Causal & Variacional)...")
+        opt_res = minimize(
+            self.loss_function_v13,
+            p0,
+            method="L-BFGS-B",
+            bounds=bounds,
+            options={"maxiter": 5000, "ftol": 1e-12}
+        )
+
+        params_otimos = opt_res.x.tolist()
+        res_final = self.engine.predict_orbits_v13(self.eigenvalues, params_otimos)
+
+        return {
+            "sucesso": opt_res.success,
+            "mensagem": opt_res.message,
+            "iteracoes": opt_res.nit,
+            "parametros_otimos": {
+                "alpha1": params_otimos[0],
+                "alpha2": params_otimos[1],
+                "beta": params_otimos[2],
+                "gamma_a6 (Seeley-DeWitt)": params_otimos[3],
+                "delta_kuiper (Campo Distante)": params_otimos[4],
+                "xi_resonance (Laplace)": params_otimos[5],
+                "zeta_tidal (Maré 3 Corpos)": params_otimos[6],
+                "escala_base": params_otimos[7],
+                "kappa_sm (Eletrofraco)": params_otimos[8]
+            },
+            "erro_medio_otimizado": res_final["erro_medio_global"],
+            "resultados_orbitais": res_final
+        }
+
+
 if __name__ == "__main__":
     opt = SpectralGlobalOptimizer(512, 2026)
-    resultado = opt.run_optimization_v13()
+    resultado = opt.run_optimization_v15()
 
     print("=" * 72)
-    print("RESULTADO DA OTIMIZAÇÃO VARIACIONAL TGE-13.0 (ToE)")
+    print("RESULTADO DA OTIMIZAÇÃO VARIACIONAL TGE-15.0 (ToE)")
     print(f"Status: {resultado['mensagem']} (Iterações: {resultado['iteracoes']})")
     print(f"Erro Médio Global Otimizado: {resultado['erro_medio_otimizado']:.2f}%")
     print("\nParâmetros Fundamentais da Ação Espectral:")
@@ -105,8 +155,9 @@ if __name__ == "__main__":
         print(f"  • {k}: {v:.6f}")
 
     print("\nTabela Orbital Otimizada:")
-    print(f"{'Planeta':<10} | {'Real (UA)':<12} | {'TGE-13 (UA)':<12} | {'Erro (%)':<10}")
+    print(f"{'Planeta':<10} | {'Real (UA)':<12} | {'TGE-15 (UA)':<12} | {'Erro (%)':<10}")
     print("-" * 52)
     for p in resultado["resultados_orbitais"]["tabela"]:
         print(f"{p['planeta']:<10} | {p['real_ua']:<12.4f} | {p['tge_ua']:<12.4f} | {p['erro_rel_pct']:<10.2f}%")
     print("=" * 72)
+
