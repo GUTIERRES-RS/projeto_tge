@@ -2,7 +2,7 @@
   "project": "TGE",
   "version": "TGE-CORE-03",
   "branch": "main",
-  "commit": "",
+  "commit": "0751d563d3f408b55c110b699cb83ca1fd6e8cd6",
   "status": "TGE_CORE_03_COMPLETED",
   "current_task": "Protocolo Integral de Governança, Reconciliação e Pipeline Oficial",
   "last_experiment": "EXP-CORE-03-OFFICIAL-PIPELINE (Fases A, B, C, D e Suíte de 10 Testes)",

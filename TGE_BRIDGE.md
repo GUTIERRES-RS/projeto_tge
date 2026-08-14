@@ -4,7 +4,7 @@
 
 status_do_projeto: TGE_CORE_03_COMPLETED
 fase_atual: TGE-CORE-03 / TGE-RESEARCH-PROTOCOL (Execução Integral e Governança Epistemológica)
-ultimo_commit: TGE-CORE-03
+ultimo_commit: 0751d563d3f408b55c110b699cb83ca1fd6e8cd6
 ultimo_experimento: EXP-CORE-03-OFFICIAL-PIPELINE
 ultimo_resultado: H1 FAILED (d_spec ~ 1.01); H2 FAILED / NOT_DEMONSTRATED (P((1,3)|TGE)=0.0); Target Leakage = 0; Controle eta=I colapsa em (128,0,0)
 bloqueio_atual: Aguardando parecer final do Auditor Externo para AUDIT-CORE-03
