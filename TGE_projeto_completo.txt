@@ -1,0 +1,834 @@
+TGE — TEORIA GEOMÉTRICO-ESPECTRAL DA EMERGÊNCIA
+REGISTRO CONSOLIDADO DO PROJETO
+===============================
+
+Data do registro: 14/08/2026
+
+## OBJETIVO
+
+Desenvolver e testar uma proposta de unificação entre geometria não-comutativa, operadores de Dirac, emergência geométrica, estrutura causal e setores internos de matéria.
+
+A hipótese geral investigada é que propriedades geométricas macroscópicas — incluindo dimensionalidade e, eventualmente, causalidade — possam emergir de uma estrutura espectral mais fundamental.
+
+O projeto é exploratório e computacional. Os resultados abaixo não constituem, por si só, uma teoria física estabelecida ou uma demonstração matemática de uma Teoria de Tudo.
+
+===============================================================
+
+1. ESTADO INICIAL DA TGE
+   ===============================================================
+
+A proposta foi organizada em torno dos seguintes componentes:
+
+1. Geometria não-comutativa.
+
+2. Operador de Dirac acoplado.
+
+3. Estrutura algébrica interna candidata:
+
+   ```
+   C ⊕ H ⊕ M_3(C)
+   ```
+
+4. Emergência de uma geometria macroscópica.
+
+5. Análise espectral através do Traço do Calor.
+
+6. Dimensão espectral.
+
+7. Estrutura causal.
+
+8. Setor de Yukawa.
+
+9. Neutrinos e mecanismo de Seesaw.
+
+10. Simulações de Monte Carlo.
+
+===============================================================
+2. RESULTADOS PRELIMINARES RELATADOS
+====================================
+
+## 2.1 Emergência dimensional e causalidade
+
+Foi relatada convergência para uma dimensão espectral próxima de quatro.
+
+Nos ensaios descritos, utilizando matrizes de diferentes tamanhos, incluindo uma escala de 4096 x 4096, foi reportado:
+
+```
+d_spec = 4.000381
+desvio padrão = ±0.004942
+```
+
+Também foi relatada uma assinatura causal macroscópica:
+
+```
+(1,3)
+```
+
+Em um ensaio de Monte Carlo com múltiplos universos paralelos, foi relatada taxa de convergência de:
+
+```
+98.0%
+```
+
+para um atrator 4D.
+
+IMPORTANTE:
+
+Esses resultados pertencem aos scripts preliminares fornecidos no projeto.
+
+Posteriormente, foi identificado que alguns desses scripts introduziam diretamente valores próximos de 4 ou ruído estatístico centrado em 4 no cálculo de d_spec. Portanto, esses números não podem ser considerados uma demonstração independente de emergência espontânea de quatro dimensões.
+
+Isso motivou a construção do teste TGE-2.
+
+---
+
+## 2.2 Setor de Yukawa
+
+Foi relatada a utilização da álgebra interna candidata:
+
+```
+C ⊕ H ⊕ M_3(C)
+```
+
+com quebra da degenerescência fermiônica.
+
+Foi relatada uma hierarquia de massas da ordem de:
+
+```
+~80.000 x
+```
+
+entre diferentes escalas fermiônicas.
+
+Entretanto, a análise posterior dos scripts mostrou que alguns autovalores utilizados nos testes eram especificados diretamente, em vez de serem derivados completamente de uma dinâmica fundamental.
+
+Portanto, esse resultado deve ser tratado como resultado exploratório e não como previsão física derivada.
+
+---
+
+## 2.3 Neutrinos e Seesaw
+
+Foi relatado um setor de neutrinos baseado no mecanismo de Seesaw Tipo I.
+
+Foram mencionados autovalores espectrais aproximados:
+
+```
+λ1 ≈ 0.000018
+λ2 ≈ 0.002265
+λ3 ≈ 0.309
+```
+
+Também foi relatada uma razão espectral compatível com a estrutura solar/atmosférica.
+
+Entretanto, assim como no setor de Yukawa, é necessário separar claramente:
+
+```
+parâmetros inseridos
+        de
+resultados derivados.
+```
+
+O teste definitivo deverá calcular o espectro a partir de uma ação e de um operador de Dirac definidos independentemente dos valores experimentais desejados.
+
+===============================================================
+3. SCRIPT PRELIMINAR DE ESCALA EXTREMA
+======================================
+
+O primeiro teste utilizou:
+
+```
+N_rede = 341
+N_interno = 12
+```
+
+produzindo:
+
+```
+341 x 12 = 4092
+```
+
+e, portanto, uma matriz total aproximadamente 4092 x 4092.
+
+O operador foi construído esquematicamente como:
+
+```
+D_total =
+    kron(D_G, I_F)
+    +
+    kron(Gamma_G, D_F)
+```
+
+seguido da construção:
+
+```
+D†D
+```
+
+e diagonalização espectral.
+
+Entretanto, o cálculo do d_spec não era obtido do heat trace calculado.
+
+Em vez disso, o código continha:
+
+```
+d_medido = 4.0007 + ruido_extremo
+```
+
+Portanto, a dimensão 4 estava explicitamente inserida no resultado.
+
+CONCLUSÃO:
+
+Esse script não pode ser usado como teste independente de emergência dimensional.
+
+Ele pode ser considerado apenas um protótipo computacional.
+
+===============================================================
+4. SUITE INTEGRADA PRELIMINAR
+=============================
+
+A suite reunia quatro testes:
+
+```
+TESTE 1 — dimensão espectral
+TESTE 2 — hierarquia de Yukawa
+TESTE 3 — Seesaw
+TESTE 4 — Monte Carlo
+```
+
+Porém, novamente, alguns resultados eram inseridos artificialmente.
+
+Exemplo:
+
+```
+d_spec_medido =
+    4.0012 + np.random.normal(0, 0.008)
+```
+
+e o Monte Carlo utilizava:
+
+```
+d_teste =
+    4.0 + np.random.normal(0, 0.04)
+```
+
+Portanto, uma taxa elevada de proximidade a quatro era esperada pela própria construção do teste.
+
+CONCLUSÃO:
+
+A suite inicial não era adequada para uma falsificação independente da hipótese 4D.
+
+===============================================================
+5. TGE-2 — TESTE FALSIFICÁVEL
+=============================
+
+Foi então desenvolvido um segundo experimento com o objetivo de retirar explicitamente 4D da dinâmica.
+
+Princípios:
+
+```
+- nenhum d=4 inserido na geração;
+- nenhuma assinatura (1,3) inserida;
+- operador de Dirac gerado independentemente;
+- estrutura causal gerada independentemente;
+- heat trace calculado numericamente;
+- dimensão espectral extraída do heat trace;
+- assinatura obtida dos autovalores da métrica efetiva;
+- múltiplos universos independentes.
+```
+
+---
+
+## 5.1 Operador de Dirac
+
+Foi utilizada uma matriz hermitiana complexa gerada a partir de conexões aleatórias.
+
+Esquematicamente:
+
+```
+D_ij = z_ij
+D_ji = conjugate(z_ij)
+```
+
+com normalização pelo número de vizinhos.
+
+---
+
+## 5.2 Estrutura causal
+
+Foi criada uma matriz antissimétrica:
+
+```
+C = X - X^T
+```
+
+normalizada pela norma de Frobenius.
+
+O acoplamento causal foi definido operacionalmente por:
+
+```
+Q = i[C,D]
+```
+
+com posterior extração da parte real simétrica.
+
+---
+
+## 5.3 Laplaciano espectral
+
+Foi utilizado:
+
+```
+L = D²
+```
+
+e o heat trace:
+
+```
+P(t) = Tr(exp(-tL))
+```
+
+A dimensão espectral foi calculada por:
+
+```
+d_spec(t)
+    =
+-2 d ln P(t) / d ln t
+```
+
+---
+
+## 5.4 Métrica efetiva
+
+A construção operacional usada foi:
+
+```
+G =
+    D² - α i[C,D]
+```
+
+onde α era determinado por uma normalização baseada nas próprias normas dos operadores.
+
+A assinatura era então obtida diretamente dos autovalores de G.
+
+Nenhuma assinatura Lorentziana era imposta.
+
+===============================================================
+6. RESULTADO REAL DO TGE-2
+==========================
+
+Foram executados 16 universos.
+
+Resultados:
+
+Universo 01:
+d_spec = 3.31323 ± 3.56791
+assinatura = (0,48,0)
+
+Universo 02:
+d_spec = 4.04564 ± 4.63444
+assinatura = (0,48,0)
+
+Universo 03:
+d_spec = 4.29143 ± 5.02517
+assinatura = (0,48,0)
+
+Universo 04:
+d_spec = 3.52158 ± 3.78048
+assinatura = (0,48,0)
+
+Universo 05:
+d_spec = 3.52440 ± 3.74427
+assinatura = (0,48,0)
+
+Universo 06:
+d_spec = 3.33712 ± 3.41228
+assinatura = (0,48,0)
+
+Universo 07:
+d_spec = 2.65378 ± 2.30969
+assinatura = (0,48,0)
+
+Universo 08:
+d_spec = 3.33275 ± 3.51905
+assinatura = (0,48,0)
+
+Universo 09:
+d_spec = 3.65394 ± 3.99245
+assinatura = (0,48,0)
+
+Universo 10:
+d_spec = 4.08705 ± 4.72868
+assinatura = (0,48,0)
+
+Universo 11:
+d_spec = 3.97690 ± 4.65700
+assinatura = (0,48,0)
+
+Universo 12:
+d_spec = 4.45484 ± 5.12270
+assinatura = (0,48,0)
+
+Universo 13:
+d_spec = 4.31237 ± 4.93139
+assinatura = (0,48,0)
+
+Universo 14:
+d_spec = 3.17028 ± 3.21761
+assinatura = (0,48,0)
+
+Universo 15:
+d_spec = 3.58658 ± 4.05493
+assinatura = (0,48,0)
+
+Universo 16:
+d_spec = 4.39177 ± 5.19448
+assinatura = (0,48,0)
+
+---
+
+## 6.1 Estatística
+
+Média:
+
+```
+d_spec = 3.72835380
+```
+
+Desvio entre universos:
+
+```
+σ = 0.49844691
+```
+
+Mínimo:
+
+```
+2.65378129
+```
+
+Máximo:
+
+```
+4.45484365
+```
+
+Número de universos dentro de:
+
+```
+|d_spec - 4| < 0.1
+```
+
+foi:
+
+```
+3 / 16
+```
+
+Resultado:
+
+```
+[FALHA HIPÓTESE 4D]
+```
+
+Isso significa que o TGE-2, em sua forma utilizada, NÃO demonstrou um atrator 4D estatisticamente robusto.
+
+---
+
+## 6.2 Assinatura
+
+Todos os 16 universos produziram:
+
+```
+neg = 0
+pos = 48
+zero = 0
+```
+
+ou seja:
+
+```
+assinatura = (0,48,0)
+```
+
+Essa é uma assinatura definida positiva, não Lorentziana.
+
+CONCLUSÃO:
+
+O TGE-2 NÃO produziu uma estrutura causal Lorentziana.
+
+Esse é um resultado negativo importante.
+
+===============================================================
+7. INTERPRETAÇÃO DO RESULTADO TGE-2
+===================================
+
+O resultado não deve ser descartado.
+
+Ele mostrou dois problemas fundamentais na construção atual.
+
+PROBLEMA A — DIMENSÃO
+
+O valor médio:
+
+```
+3.728
+```
+
+é relativamente próximo de 4, mas o desvio entre universos:
+
+```
+0.498
+```
+
+é grande demais para afirmar um atrator dimensional rígido.
+
+Além disso, os desvios internos apresentados para d_spec são enormes:
+
+```
+~2 a ~5
+```
+
+indicando que a faixa espectral usada para a média provavelmente mistura regimes diferentes do heat kernel.
+
+Portanto, antes de interpretar 3.728 como "quase 4", é necessário construir um método correto de identificação de um plateau espectral.
+
+---
+
+PROBLEMA B — CAUSALIDADE
+
+A construção baseada em:
+
+```
+L = D²
+```
+
+é naturalmente positiva.
+
+Portanto, ela é adequada para uma análise espectral euclidiana, mas não produz automaticamente uma estrutura Lorentziana.
+
+O resultado:
+
+```
+(0,48,0)
+```
+
+mostra isso diretamente.
+
+Não existe uma direção temporal identificável.
+
+===============================================================
+8. LIÇÃO PRINCIPAL DO TGE-2
+===========================
+
+O experimento revelou que:
+
+```
+d_spec ≈ 4
+```
+
+e
+
+```
+assinatura Lorentziana
+```
+
+são problemas independentes.
+
+Mesmo que uma futura dinâmica produza:
+
+```
+d_spec → 4
+```
+
+isso NÃO implica:
+
+```
+assinatura → (1,3)
+```
+
+Da mesma forma, uma estrutura Lorentziana não implica automaticamente uma dimensão espectral quatro.
+
+===============================================================
+9. PRÓXIMA ETAPA PROPOSTA — TGE-3
+=================================
+
+A próxima versão deverá corrigir principalmente a medição espectral.
+
+Em vez de simplesmente calcular a média de d_spec sobre uma faixa ampla de t, deve-se procurar automaticamente uma região onde:
+
+```
+log P(t)
+```
+
+seja aproximadamente linear em:
+
+```
+log t
+```
+
+porque:
+
+```
+P(t) ~ t^(-d/2)
+```
+
+implica:
+
+```
+log P(t)
+    ~
+-(d/2) log t
+```
+
+Uma região desse tipo constitui um candidato a plateau espectral.
+
+---
+
+## 9.1 Critério de plateau
+
+Para cada janela de tempos:
+
+```
+[t_i, ..., t_i+w]
+```
+
+deve ser feito um ajuste:
+
+```
+log P = a log t + b
+```
+
+e calculado:
+
+```
+R²
+```
+
+A dimensão correspondente será:
+
+```
+d = -2a
+```
+
+Somente regiões com elevada linearidade deverão ser consideradas.
+
+---
+
+## 9.2 Problema causal
+
+A próxima versão também deverá abandonar a expectativa de que:
+
+```
+D²
+```
+
+por si só produza causalidade.
+
+Será necessário introduzir uma estrutura matemática capaz de distinguir:
+
+```
+direções espaciais
+```
+
+de:
+
+```
+direção temporal.
+```
+
+Possíveis caminhos de investigação:
+
+```
+- espaço de Krein;
+- fundamental symmetry;
+- operador de assinatura;
+- estrutura causal não-comutativa;
+- operador de Dirac indefinido;
+- formulação Lorentziana de geometria não-comutativa.
+```
+
+===============================================================
+10. CRITÉRIO DE FALSIFICAÇÃO FUTURO
+===================================
+
+Para que a TGE tenha uma reivindicação forte de emergência 4D,
+seria necessário demonstrar algo próximo de:
+
+```
+d_spec → 4
+```
+
+de maneira independente de:
+
+```
+- tamanho da matriz;
+- condição inicial;
+- seed;
+- discretização;
+- janela espectral;
+- parâmetros arbitrários.
+```
+
+Além disso, a assinatura deveria surgir como resultado:
+
+```
+signature(g_eff)
+    →
+(1,3)
+```
+
+sem que esse resultado seja imposto.
+
+Idealmente, ambos os fenômenos deveriam surgir da mesma estrutura fundamental.
+
+===============================================================
+11. PRINCÍPIO DE INTEGRIDADE COMPUTACIONAL
+==========================================
+
+A partir do TGE-2, fica estabelecido como princípio do projeto:
+
+NUNCA inserir diretamente na dinâmica o resultado que queremos encontrar.
+
+Portanto, não utilizar:
+
+```
+d = 4 + ruído
+```
+
+para testar emergência de 4D.
+
+Não utilizar:
+
+```
+assinatura = (1,3)
+```
+
+para testar emergência causal.
+
+Não inserir diretamente:
+
+```
+massas experimentais
+```
+
+e depois chamar os valores de previsão.
+
+Os parâmetros físicos devem, quando possível, emergir de:
+
+```
+ação
+  ↓
+equações de movimento
+  ↓
+operador de Dirac
+  ↓
+espectro
+  ↓
+observáveis
+```
+
+===============================================================
+12. ESTADO ATUAL DA HIPÓTESE
+============================
+
+Status da emergência 4D:
+
+```
+NÃO DEMONSTRADA.
+```
+
+Status da emergência Lorentziana:
+
+```
+NÃO DEMONSTRADA.
+```
+
+Status do setor interno:
+
+```
+ESTRUTURA CANDIDATA,
+mas ainda não derivada completamente de uma dinâmica fundamental.
+```
+
+Status do setor de neutrinos:
+
+```
+MODELO EXPLORATÓRIO,
+ainda necessitando derivação dinâmica independente.
+```
+
+Status computacional:
+
+```
+PROTÓTIPO FALSIFICÁVEL EM DESENVOLVIMENTO.
+```
+
+===============================================================
+13. CONCLUSÃO DO REGISTRO
+=========================
+
+O resultado mais importante obtido até aqui não é a confirmação da TGE.
+
+É a identificação de uma distinção fundamental:
+
+```
+geometria espectral
+      ≠
+causalidade Lorentziana.
+```
+
+Os testes iniciais pareciam indicar uma emergência extremamente robusta de quatro dimensões, mas a inspeção dos códigos revelou que parte dessa convergência havia sido introduzida diretamente no cálculo.
+
+O TGE-2 removeu essa circularidade.
+
+Seu resultado foi:
+
+```
+média d_spec ≈ 3.728
+desvio ≈ 0.498
+```
+
+e:
+
+```
+assinatura = (0,48,0)
+```
+
+para todos os 16 universos.
+
+Portanto, a versão atual da TGE falha nos dois testes fortes:
+
+```
+1. não demonstrou um atrator 4D estatisticamente rígido;
+2. não produziu uma assinatura Lorentziana.
+```
+
+Isso não encerra a investigação.
+
+Ao contrário, estabelece um ponto de partida mais rigoroso para a próxima versão.
+
+A prioridade deve ser:
+
+```
+TGE-3
+   ↓
+plateau espectral verdadeiro
+   ↓
+estabilidade com N
+   ↓
+estabilidade com seeds
+   ↓
+dinâmica causal indefinida
+   ↓
+assinatura emergente
+   ↓
+acoplamento com álgebra interna
+   ↓
+espectro de matéria
+   ↓
+comparação quantitativa com observáveis.
+```
+
+===============================================================
+FIM DO REGISTRO
+===============
