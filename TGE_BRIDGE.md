@@ -4,7 +4,7 @@
 
 status_do_projeto: INITIAL_AUDIT_COMPLETED
 fase_atual: TGE-CORE-01 (Auditoria & Assinatura Causal Independente)
-ultimo_commit: 5495ed88e589d3776ed63f2d58f61f355e0aa756
+ultimo_commit: 56eb56a1c5db23696564750567b870bba7a3faf6
 ultimo_experimento: EXP-002-CAUSAL-CORE-01
 ultimo_resultado: Assinatura real mista (59, 5, 0) para N=64 e (122, 6, 0) para N=128
 bloqueio_atual: Aguardando avaliacao do Auditor Externo para o TGE-CORE-01
